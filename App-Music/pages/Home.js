@@ -2,59 +2,60 @@ import { SafeAreaView, TouchableOpacity, ScrollView, TextInput, Image, Text, Vie
 import { FontAwesome } from '@expo/vector-icons';
 import { Footer } from '../layout/Footer';
 import Playing from './Playing';
+import { useNavigation } from '@react-navigation/native';
 
+const suggestions = [
+  require('../all_images/Home - Audio Listing/Container 26.png'),
+  require('../all_images/Home - Audio Listing/Container 27.png'),
+  require('../all_images/Home - Audio Listing/Container 26.png'),
+  require('../all_images/Home - Audio Listing/Container 27.png'),
+  require('../all_images/Home - Audio Listing/Container 26.png'),
+  require('../all_images/Home - Audio Listing/Container 27.png'),
+  require('../all_images/Home - Audio Listing/Container 26.png'),
+  require('../all_images/Home - Audio Listing/Container 27.png'),
+  require('../all_images/Home - Audio Listing/Container 26.png'),
+  require('../all_images/Home - Audio Listing/Container 27.png'),
+];
+
+const charts = [
+  { image: require('../all_images/Home - Audio Listing/Container 31.png'), text: 'Top Hits of the Week' },
+  { image: require('../all_images/Home - Audio Listing/Container 32.png'), text: 'Global Charts Highlights' },
+  { image: require('../all_images/Home - Audio Listing/Container 33.png'), text: 'Rising Stars' },
+  { image: require('../all_images/Home - Audio Listing/Container 31.png'), text: 'Indie Favorites' },
+  { image: require('../all_images/Home - Audio Listing/Container 32.png'), text: 'Chart Busters' },
+  { image: require('../all_images/Home - Audio Listing/Container 33.png'), text: 'Summer Vibes' },
+  { image: require('../all_images/Home - Audio Listing/Container 31.png'), text: 'Classics Revisited' },
+  { image: require('../all_images/Home - Audio Listing/Container 32.png'), text: 'Best of 2023' },
+  { image: require('../all_images/Home - Audio Listing/Container 33.png'), text: 'Grammy Winners' },
+  { image: require('../all_images/Home - Audio Listing/Container 31.png'), text: 'Party Anthems' },
+];
+
+const trendingAlbums = [
+  { image: require('../all_images/Home - Audio Listing/Image 45.png'), title: 'Lost in Time', artist: 'DJ Remix' },
+  { image: require('../all_images/Home - Audio Listing/Image 46.png'), title: 'The Sound of Silence', artist: 'Simon & Garfunkel' },
+  { image: require('../all_images/Home - Audio Listing/Image 47.png'), title: 'Future Nostalgia', artist: 'Dua Lipa' },
+  { image: require('../all_images/Home - Audio Listing/Image 45.png'), title: 'Rumours', artist: 'Fleetwood Mac' },
+  { image: require('../all_images/Home - Audio Listing/Image 46.png'), title: '21', artist: 'Adele' },
+  { image: require('../all_images/Home - Audio Listing/Image 47.png'), title: 'After Hours', artist: 'The Weeknd' },
+  { image: require('../all_images/Home - Audio Listing/Image 45.png'), title: 'Divide', artist: 'Ed Sheeran' },
+  { image: require('../all_images/Home - Audio Listing/Image 46.png'), title: 'Red (Taylor’s Version)', artist: 'Taylor Swift' },
+  { image: require('../all_images/Home - Audio Listing/Image 47.png'), title: '25', artist: 'Adele' },
+  { image: require('../all_images/Home - Audio Listing/Image 45.png'), title: 'In the Lonely Hour', artist: 'Sam Smith' },
+];
+
+const popularArtists = [
+  { image: require('../all_images/Home - Audio Listing/Image 39.png'), name: 'Elton John' },
+  { image: require('../all_images/Home - Audio Listing/Image 40.png'), name: 'Beyoncé' },
+  { image: require('../all_images/Home - Audio Listing/Image 41.png'), name: 'Ed Sheeran' },
+  { image: require('../all_images/Home - Audio Listing/Image 39.png'), name: 'Taylor Swift' },
+  { image: require('../all_images/Home - Audio Listing/Image 40.png'), name: 'Bruno Mars' },
+  { image: require('../all_images/Home - Audio Listing/Image 41.png'), name: 'Ariana Grande' },
+  { image: require('../all_images/Home - Audio Listing/Image 39.png'), name: 'Billie Eilish' },
+  { image: require('../all_images/Home - Audio Listing/Image 40.png'), name: 'Justin Bieber' },
+  { image: require('../all_images/Home - Audio Listing/Image 41.png'), name: 'Katy Perry' },
+  { image: require('../all_images/Home - Audio Listing/Image 39.png'), name: 'Drake' },
+];
 export default function Home({ navigation }) {
-  const suggestions = [
-    require('../all_images/Home - Audio Listing/Container 26.png'),
-    require('../all_images/Home - Audio Listing/Container 27.png'),
-    require('../all_images/Home - Audio Listing/Container 26.png'),
-    require('../all_images/Home - Audio Listing/Container 27.png'),
-    require('../all_images/Home - Audio Listing/Container 26.png'),
-    require('../all_images/Home - Audio Listing/Container 27.png'),
-    require('../all_images/Home - Audio Listing/Container 26.png'),
-    require('../all_images/Home - Audio Listing/Container 27.png'),
-    require('../all_images/Home - Audio Listing/Container 26.png'),
-    require('../all_images/Home - Audio Listing/Container 27.png'),
-  ];
-
-  const charts = [
-    { image: require('../all_images/Home - Audio Listing/Container 31.png'), text: 'Top Hits of the Week' },
-    { image: require('../all_images/Home - Audio Listing/Container 32.png'), text: 'Global Charts Highlights' },
-    { image: require('../all_images/Home - Audio Listing/Container 33.png'), text: 'Rising Stars' },
-    { image: require('../all_images/Home - Audio Listing/Container 31.png'), text: 'Indie Favorites' },
-    { image: require('../all_images/Home - Audio Listing/Container 32.png'), text: 'Chart Busters' },
-    { image: require('../all_images/Home - Audio Listing/Container 33.png'), text: 'Summer Vibes' },
-    { image: require('../all_images/Home - Audio Listing/Container 31.png'), text: 'Classics Revisited' },
-    { image: require('../all_images/Home - Audio Listing/Container 32.png'), text: 'Best of 2023' },
-    { image: require('../all_images/Home - Audio Listing/Container 33.png'), text: 'Grammy Winners' },
-    { image: require('../all_images/Home - Audio Listing/Container 31.png'), text: 'Party Anthems' },
-  ];
-
-  const trendingAlbums = [
-    { image: require('../all_images/Home - Audio Listing/Image 45.png'), title: 'Lost in Time', artist: 'DJ Remix' },
-    { image: require('../all_images/Home - Audio Listing/Image 46.png'), title: 'The Sound of Silence', artist: 'Simon & Garfunkel' },
-    { image: require('../all_images/Home - Audio Listing/Image 47.png'), title: 'Future Nostalgia', artist: 'Dua Lipa' },
-    { image: require('../all_images/Home - Audio Listing/Image 45.png'), title: 'Rumours', artist: 'Fleetwood Mac' },
-    { image: require('../all_images/Home - Audio Listing/Image 46.png'), title: '21', artist: 'Adele' },
-    { image: require('../all_images/Home - Audio Listing/Image 47.png'), title: 'After Hours', artist: 'The Weeknd' },
-    { image: require('../all_images/Home - Audio Listing/Image 45.png'), title: 'Divide', artist: 'Ed Sheeran' },
-    { image: require('../all_images/Home - Audio Listing/Image 46.png'), title: 'Red (Taylor’s Version)', artist: 'Taylor Swift' },
-    { image: require('../all_images/Home - Audio Listing/Image 47.png'), title: '25', artist: 'Adele' },
-    { image: require('../all_images/Home - Audio Listing/Image 45.png'), title: 'In the Lonely Hour', artist: 'Sam Smith' },
-  ];
-
-  const popularArtists = [
-    { image: require('../all_images/Home - Audio Listing/Image 39.png'), name: 'Elton John' },
-    { image: require('../all_images/Home - Audio Listing/Image 40.png'), name: 'Beyoncé' },
-    { image: require('../all_images/Home - Audio Listing/Image 41.png'), name: 'Ed Sheeran' },
-    { image: require('../all_images/Home - Audio Listing/Image 39.png'), name: 'Taylor Swift' },
-    { image: require('../all_images/Home - Audio Listing/Image 40.png'), name: 'Bruno Mars' },
-    { image: require('../all_images/Home - Audio Listing/Image 41.png'), name: 'Ariana Grande' },
-    { image: require('../all_images/Home - Audio Listing/Image 39.png'), name: 'Billie Eilish' },
-    { image: require('../all_images/Home - Audio Listing/Image 40.png'), name: 'Justin Bieber' },
-    { image: require('../all_images/Home - Audio Listing/Image 41.png'), name: 'Katy Perry' },
-    { image: require('../all_images/Home - Audio Listing/Image 39.png'), name: 'Drake' },
-  ];
   
   const renderSuggestionItem = ({ item }) => (
     <TouchableOpacity style={styles.product}>
@@ -88,6 +89,10 @@ export default function Home({ navigation }) {
       </TouchableOpacity>
     </TouchableOpacity>
   );  
+
+  const handleFocus = () => {
+    navigation.navigate("Search");
+  };
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -142,7 +147,8 @@ export default function Home({ navigation }) {
               borderWidth: 1,
               borderColor: 'gray',
               borderRadius: 50,
-            }} placeholder='What you want to listen to' />
+            }} placeholder='What you want to listen to'
+              onFocus={handleFocus} />
             <FontAwesome name="search" style={{
               marginHorizontal: 20,
               position: 'absolute',
@@ -154,7 +160,7 @@ export default function Home({ navigation }) {
 
         <Text style={styles.sectionTitle}>Suggestions for you</Text>
         <FlatList
-          contentContainerStyle={styles.suggestionsList} // Corrected here
+          contentContainerStyle={styles.suggestionsList} 
           data={suggestions}
           renderItem={renderSuggestionItem}
           keyExtractor={(item, index) => index.toString()}
@@ -163,7 +169,7 @@ export default function Home({ navigation }) {
 
         <Text style={styles.sectionTitle}>Charts</Text>
         <FlatList
-          contentContainerStyle={styles.chartsList} // Corrected here
+          contentContainerStyle={styles.chartsList} 
           data={charts}
           renderItem={renderChartItem}
           keyExtractor={(item, index) => index.toString()}
@@ -172,7 +178,7 @@ export default function Home({ navigation }) {
 
         <Text style={styles.sectionTitle}>Trending albums</Text>
         <FlatList
-          contentContainerStyle={styles.trendingAlbumsList} // Corrected here
+          contentContainerStyle={styles.trendingAlbumsList} 
           data={trendingAlbums}
           renderItem={renderTrendingAlbumItem}
           keyExtractor={(item, index) => index.toString()}
@@ -181,7 +187,7 @@ export default function Home({ navigation }) {
 
         <Text style={styles.sectionTitle}>Popular artists</Text>
         <FlatList
-          contentContainerStyle={styles.popularArtistsList} // Corrected here
+          contentContainerStyle={styles.popularArtistsList} 
           data={popularArtists}
           renderItem={renderPopularArtistItem}
           keyExtractor={(item, index) => index.toString()}
