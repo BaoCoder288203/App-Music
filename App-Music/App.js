@@ -8,6 +8,8 @@ import PlayListScreen from './pages/PlayListScreen';
 import SongScreen from './pages/SongScreen';
 import Search from './pages/Search';
 import ArtistProfileScreen from './pages/ArtistProfileScreen';
+import PremiumScreen from './pages/PremiumScreen';
+import PremiumChoiceScreen from './pages/PremiumChoiceScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -23,6 +25,8 @@ export default function App() {
                     <Stack.Screen name="SongScreen" component={SongScreen} />
                     <Stack.Screen name="Search" component={Search} options={{ headerShown: false }}/>
                     <Stack.Screen name="ArtistProfileScreen" component={ArtistProfileScreen}  />
+                    <Stack.Screen name="PremiumScreen" component={PremiumScreen} options={{headerShown: false}} />
+                    <Stack.Screen name="PremiumChoiceScreen" component={PremiumChoiceScreen} />
                 </Stack.Navigator>
             </NavigationContainer>
         </MusicProvider>
