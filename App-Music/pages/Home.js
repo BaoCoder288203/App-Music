@@ -43,17 +43,208 @@ const trendingAlbums = [
   { image: require('../all_images/Home - Audio Listing/Image 45.png'), title: 'In the Lonely Hour', artist: 'Sam Smith' },
 ];
 
+
 const popularArtists = [
-  { image: require('../all_images/Home - Audio Listing/Image 39.png'), name: 'Elton John' },
-  { image: require('../all_images/Home - Audio Listing/Image 40.png'), name: 'Beyoncé' },
-  { image: require('../all_images/Home - Audio Listing/Image 41.png'), name: 'Ed Sheeran' },
-  { image: require('../all_images/Home - Audio Listing/Image 39.png'), name: 'Taylor Swift' },
-  { image: require('../all_images/Home - Audio Listing/Image 40.png'), name: 'Bruno Mars' },
-  { image: require('../all_images/Home - Audio Listing/Image 41.png'), name: 'Ariana Grande' },
-  { image: require('../all_images/Home - Audio Listing/Image 39.png'), name: 'Billie Eilish' },
-  { image: require('../all_images/Home - Audio Listing/Image 40.png'), name: 'Justin Bieber' },
-  { image: require('../all_images/Home - Audio Listing/Image 41.png'), name: 'Katy Perry' },
-  { image: require('../all_images/Home - Audio Listing/Image 39.png'), name: 'Drake' },
+  { image: require('../all_images/Home - Audio Listing/Image 39.png'), 
+    name: 'Elton John',
+    follows : '65100',
+    albums:[
+      {image: require('../all_images/Artist Profile/Image 71.png'), title:'ME', artist:'Jessica Gonzalez'},
+      {image: require('../all_images/Artist Profile/Image 72.png'), title:'Magna nost', artist:'Jessica Gonzalez'},
+      {image: require('../all_images/Artist Profile/Image 77.png'), title:'Proident', artist:'Jessica Gonzalez'},
+    ],
+    about:[
+      {
+        desp: 'Do in cupidatat aute et in officia aute laboris est Lorem est nisi dolor consequat voluptate duis irure. Veniam quis amet irure cillum elit aliquip sunt cillum cillum do aliqua voluptate ad non magna elit. Do ea n',
+        image: require('../all_images/Artist Profile/Image 73.png'),
+      }
+    ],
+    other:[
+      {image: require('../all_images/Artist Profile/Image 74.png'), title:'Magna nost', artist:'Jessica Gonzalez'},
+      {image: require('../all_images/Artist Profile/Image 75.png'), title:'Exercitatio', artist:'Brian Harris'},
+      {image: require('../all_images/Artist Profile/Image 76.png'), title:'Tempor', artist:'Tyler And'},
+    ],
+  },
+  { image: require('../all_images/Home - Audio Listing/Image 40.png'), 
+    name: 'Beyoncé',
+    follows : '65100',
+    albums:[
+      {image: require('../all_images/Artist Profile/Image 71.png'), title:'ME', artist:'Jessica Gonzalez'},
+      {image: require('../all_images/Artist Profile/Image 72.png'), title:'Magna nost', artist:'Jessica Gonzalez'},
+      {image: require('../all_images/Artist Profile/Image 77.png'), title:'Proident', artist:'Jessica Gonzalez'},
+    ],
+    about:[
+      {
+        desp: 'Do in cupidatat aute et in officia aute laboris est Lorem est nisi dolor consequat voluptate duis irure. Veniam quis amet irure cillum elit aliquip sunt cillum cillum do aliqua voluptate ad non magna elit. Do ea n',
+        image: require('../all_images/Artist Profile/Image 73.png'),
+      }
+    ],
+    other:[
+      {image: require('../all_images/Artist Profile/Image 74.png'), title:'Magna nost', artist:'Jessica Gonzalez'},
+      {image: require('../all_images/Artist Profile/Image 75.png'), title:'Exercitatio', artist:'Brian Harris'},
+      {image: require('../all_images/Artist Profile/Image 76.png'), title:'Tempor', artist:'Tyler And'},
+    ],
+   },
+  { image: require('../all_images/Home - Audio Listing/Image 41.png'), 
+    name: 'Ed Sheeran',
+    follows : '65100',
+    albums:[
+      {image: require('../all_images/Artist Profile/Image 71.png'), title:'ME', artist:'Jessica Gonzalez'},
+      {image: require('../all_images/Artist Profile/Image 72.png'), title:'Magna nost', artist:'Jessica Gonzalez'},
+      {image: require('../all_images/Artist Profile/Image 77.png'), title:'Proident', artist:'Jessica Gonzalez'},
+    ],
+    about:[
+      {
+        desp: 'Do in cupidatat aute et in officia aute laboris est Lorem est nisi dolor consequat voluptate duis irure. Veniam quis amet irure cillum elit aliquip sunt cillum cillum do aliqua voluptate ad non magna elit. Do ea n',
+        image: require('../all_images/Artist Profile/Image 73.png'),
+      }
+    ],
+    other:[
+      {image: require('../all_images/Artist Profile/Image 74.png'), title:'Magna nost', artist:'Jessica Gonzalez'},
+      {image: require('../all_images/Artist Profile/Image 75.png'), title:'Exercitatio', artist:'Brian Harris'},
+      {image: require('../all_images/Artist Profile/Image 76.png'), title:'Tempor', artist:'Tyler And'},
+    ],
+   },
+  { image: require('../all_images/Home - Audio Listing/Image 39.png'), 
+    name: 'Taylor Swift',
+    follows : '65100',
+    albums:[
+      {image: require('../all_images/Artist Profile/Image 71.png'), title:'ME', artist:'Jessica Gonzalez'},
+      {image: require('../all_images/Artist Profile/Image 72.png'), title:'Magna nost', artist:'Jessica Gonzalez'},
+      {image: require('../all_images/Artist Profile/Image 77.png'), title:'Proident', artist:'Jessica Gonzalez'},
+    ],
+    about:[
+      {
+        desp: 'Do in cupidatat aute et in officia aute laboris est Lorem est nisi dolor consequat voluptate duis irure. Veniam quis amet irure cillum elit aliquip sunt cillum cillum do aliqua voluptate ad non magna elit. Do ea n',
+        image: require('../all_images/Artist Profile/Image 73.png'),
+      }
+    ],
+    other:[
+      {image: require('../all_images/Artist Profile/Image 74.png'), title:'Magna nost', artist:'Jessica Gonzalez'},
+      {image: require('../all_images/Artist Profile/Image 75.png'), title:'Exercitatio', artist:'Brian Harris'},
+      {image: require('../all_images/Artist Profile/Image 76.png'), title:'Tempor', artist:'Tyler And'},
+    ],
+   },
+  { image: require('../all_images/Home - Audio Listing/Image 40.png'), 
+    name: 'Bruno Mars',
+    follows : '65100',
+    albums:[
+      {image: require('../all_images/Artist Profile/Image 71.png'), title:'ME', artist:'Jessica Gonzalez'},
+      {image: require('../all_images/Artist Profile/Image 72.png'), title:'Magna nost', artist:'Jessica Gonzalez'},
+      {image: require('../all_images/Artist Profile/Image 77.png'), title:'Proident', artist:'Jessica Gonzalez'},
+    ],
+    about:[
+      {
+        desp: 'Do in cupidatat aute et in officia aute laboris est Lorem est nisi dolor consequat voluptate duis irure. Veniam quis amet irure cillum elit aliquip sunt cillum cillum do aliqua voluptate ad non magna elit. Do ea n',
+        image: require('../all_images/Artist Profile/Image 73.png'),
+      }
+    ],
+    other:[
+      {image: require('../all_images/Artist Profile/Image 74.png'), title:'Magna nost', artist:'Jessica Gonzalez'},
+      {image: require('../all_images/Artist Profile/Image 75.png'), title:'Exercitatio', artist:'Brian Harris'},
+      {image: require('../all_images/Artist Profile/Image 76.png'), title:'Tempor', artist:'Tyler And'},
+    ],
+   },
+  { image: require('../all_images/Home - Audio Listing/Image 41.png'), 
+    name: 'Ariana Grande',
+    follows : '65100',
+    albums:[
+      {image: require('../all_images/Artist Profile/Image 71.png'), title:'ME', artist:'Jessica Gonzalez'},
+      {image: require('../all_images/Artist Profile/Image 72.png'), title:'Magna nost', artist:'Jessica Gonzalez'},
+      {image: require('../all_images/Artist Profile/Image 77.png'), title:'Proident', artist:'Jessica Gonzalez'},
+    ],
+    about:[
+      {
+        desp: 'Do in cupidatat aute et in officia aute laboris est Lorem est nisi dolor consequat voluptate duis irure. Veniam quis amet irure cillum elit aliquip sunt cillum cillum do aliqua voluptate ad non magna elit. Do ea n',
+        image: require('../all_images/Artist Profile/Image 73.png'),
+      }
+    ],
+    other:[
+      {image: require('../all_images/Artist Profile/Image 74.png'), title:'Magna nost', artist:'Jessica Gonzalez'},
+      {image: require('../all_images/Artist Profile/Image 75.png'), title:'Exercitatio', artist:'Brian Harris'},
+      {image: require('../all_images/Artist Profile/Image 76.png'), title:'Tempor', artist:'Tyler And'},
+    ],
+   },
+  { image: require('../all_images/Home - Audio Listing/Image 39.png'), 
+    name: 'Billie Eilish',
+    follows : '65100',
+    albums:[
+      {image: require('../all_images/Artist Profile/Image 71.png'), title:'ME', artist:'Jessica Gonzalez'},
+      {image: require('../all_images/Artist Profile/Image 72.png'), title:'Magna nost', artist:'Jessica Gonzalez'},
+      {image: require('../all_images/Artist Profile/Image 77.png'), title:'Proident', artist:'Jessica Gonzalez'},
+    ],
+    about:[
+      {
+        desp: 'Do in cupidatat aute et in officia aute laboris est Lorem est nisi dolor consequat voluptate duis irure. Veniam quis amet irure cillum elit aliquip sunt cillum cillum do aliqua voluptate ad non magna elit. Do ea n',
+        image: require('../all_images/Artist Profile/Image 73.png'),
+      }
+    ],
+    other:[
+      {image: require('../all_images/Artist Profile/Image 74.png'), title:'Magna nost', artist:'Jessica Gonzalez'},
+      {image: require('../all_images/Artist Profile/Image 75.png'), title:'Exercitatio', artist:'Brian Harris'},
+      {image: require('../all_images/Artist Profile/Image 76.png'), title:'Tempor', artist:'Tyler And'},
+    ],
+   },
+  { image: require('../all_images/Home - Audio Listing/Image 40.png'), 
+    name: 'Justin Bieber',
+    follows : '65100',
+    albums:[
+      {image: require('../all_images/Artist Profile/Image 71.png'), title:'ME', artist:'Jessica Gonzalez'},
+      {image: require('../all_images/Artist Profile/Image 72.png'), title:'Magna nost', artist:'Jessica Gonzalez'},
+      {image: require('../all_images/Artist Profile/Image 77.png'), title:'Proident', artist:'Jessica Gonzalez'},
+    ],
+    about:[
+      {
+        desp: 'Do in cupidatat aute et in officia aute laboris est Lorem est nisi dolor consequat voluptate duis irure. Veniam quis amet irure cillum elit aliquip sunt cillum cillum do aliqua voluptate ad non magna elit. Do ea n',
+        image: require('../all_images/Artist Profile/Image 73.png'),
+      }
+    ],
+    other:[
+      {image: require('../all_images/Artist Profile/Image 74.png'), title:'Magna nost', artist:'Jessica Gonzalez'},
+      {image: require('../all_images/Artist Profile/Image 75.png'), title:'Exercitatio', artist:'Brian Harris'},
+      {image: require('../all_images/Artist Profile/Image 76.png'), title:'Tempor', artist:'Tyler And'},
+    ],
+   },
+  { image: require('../all_images/Home - Audio Listing/Image 41.png'), 
+    name: 'Katy Perry',
+    follows : '65100',
+    albums:[
+      {image: require('../all_images/Artist Profile/Image 71.png'), title:'ME', artist:'Jessica Gonzalez'},
+      {image: require('../all_images/Artist Profile/Image 72.png'), title:'Magna nost', artist:'Jessica Gonzalez'},
+      {image: require('../all_images/Artist Profile/Image 77.png'), title:'Proident', artist:'Jessica Gonzalez'},
+    ],
+    about:[
+      {
+        desp: 'Do in cupidatat aute et in officia aute laboris est Lorem est nisi dolor consequat voluptate duis irure. Veniam quis amet irure cillum elit aliquip sunt cillum cillum do aliqua voluptate ad non magna elit. Do ea n',
+        image: require('../all_images/Artist Profile/Image 73.png'),
+      }
+    ],
+    other:[
+      {image: require('../all_images/Artist Profile/Image 74.png'), title:'Magna nost', artist:'Jessica Gonzalez'},
+      {image: require('../all_images/Artist Profile/Image 75.png'), title:'Exercitatio', artist:'Brian Harris'},
+      {image: require('../all_images/Artist Profile/Image 76.png'), title:'Tempor', artist:'Tyler And'},
+    ],
+   },
+  { image: require('../all_images/Home - Audio Listing/Image 39.png'), 
+    name: 'Drake',
+    follows : '65100',
+    albums:[
+      {image: require('../all_images/Artist Profile/Image 71.png'), title:'ME', artist:'Jessica Gonzalez'},
+      {image: require('../all_images/Artist Profile/Image 72.png'), title:'Magna nost', artist:'Jessica Gonzalez'},
+      {image: require('../all_images/Artist Profile/Image 77.png'), title:'Proident', artist:'Jessica Gonzalez'},
+    ],
+    about:[
+      {
+        desp: 'Do in cupidatat aute et in officia aute laboris est Lorem est nisi dolor consequat voluptate duis irure. Veniam quis amet irure cillum elit aliquip sunt cillum cillum do aliqua voluptate ad non magna elit. Do ea n',
+        image: require('../all_images/Artist Profile/Image 73.png'),
+      }
+    ],
+    other:[
+      {image: require('../all_images/Artist Profile/Image 74.png'), title:'Magna nost', artist:'Jessica Gonzalez'},
+      {image: require('../all_images/Artist Profile/Image 75.png'), title:'Exercitatio', artist:'Brian Harris'},
+      {image: require('../all_images/Artist Profile/Image 76.png'), title:'Tempor', artist:'Tyler And'},
+    ],
+   },
 ];
 export default function Home({ navigation }) {
   
@@ -81,7 +272,16 @@ export default function Home({ navigation }) {
   );
   
   const renderPopularArtistItem = ({ item }) => (
-    <TouchableOpacity style={styles.product3}>
+    <TouchableOpacity style={styles.product3}
+      onPress={() => navigation.navigate('ArtistProfileScreen', {
+        image: item.image,
+        name: item.name,
+        follows: item.follows,
+        albums: item.albums,
+        about: item.about,
+        other: item.other
+      })}
+    >
       <Image source={item.image} />
       <Text style={styles.artistName}>{item.name}</Text>
       <TouchableOpacity style={{ width: 70, margin: '0 auto' }}>
