@@ -1,26 +1,69 @@
 import { SafeAreaView,TouchableOpacity,ScrollView,TextInput,Image,Text, View, StyleSheet, FlatList } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
+import {songs} from './MusicProvider';
+import Playing from './Playing';
+import { Footer } from '../layout/Footer';
+import { useMusic } from './MusicProvider';
 
-const data = [
+const tags = [
     { id: '1', title: 'Playlists' },
-    { id: '2', title: 'Item 2' },
-    { id: '3', title: 'Item 3' },
-    { id: '4', title: 'Item 4' },
+    { id: '2', title: 'New tags' },
+    { id: '3', title: 'Songs' },
+    { id: '4', title: 'Album' },
+    { id: '5', title: 'Artist' }
   ];
-const verticalData = [
-    { id: '5', title: 'Vertical Item 1' },
-    { id: '6', title: 'Vertical Item 2' },
-    { id: '7', title: 'Vertical Item 3' },
-    { id: '8', title: 'Vertical Item 4' },
-    { id: '9', title: 'Vertical Item 5' },
-    { id: '10', title: 'Vertical Item 6' },
-];
 
-export default function YourLibrary() {
+export default function YourLibrary({navigation}) {
+    const { songCurrent, isPlaying, playSong, playPauseSong } = useMusic();
+
+    const handleTagPress = (tagTitle) => {
+        switch(tagTitle) {
+            case 'Playlists':
+                navigation.navigate('YourPlaylists');
+                break;
+            case 'New tags':
+                navigation.navigate('YourPlaylists');
+                break;
+            case 'Songs':
+                navigation.navigate('YourPlaylists');
+                break;
+            case 'Album':
+                navigation.navigate('YourPlaylists');
+                break;
+            case 'Artist':
+                navigation.navigate('YourPlaylists');
+                break;
+            default:
+                console.warn("Screen not found for this tag.");
+        }
+    };
+
+    const renderSongItem = ({ item }) => (
+        <TouchableOpacity style={styles.songItem} onPress={()=>{
+            playSong(item);
+        }}>
+            <Image source={item.artwork} style={styles.songImage} />
+            <View style={styles.songDetails}>
+                <Text style={styles.songTitle}>{item.title}</Text>
+                <Text style={styles.songArtist}>{item.artist}</Text>
+                <Text style={styles.songStats}>{item.plays} • {item.duration}</Text>
+            </View>
+            <TouchableOpacity>
+                <FontAwesome name="ellipsis-v" size={24} color="gray" />
+            </TouchableOpacity>
+        </TouchableOpacity>
+    );
+
     return(
         <SafeAreaView style={{flex:1}}>
+            <ScrollView 
+                style={styles.container}
+                showsVerticalScrollIndicator={false} 
+                showsHorizontalScrollIndicator={false} 
+                contentContainerStyle={{ flexGrow: 1 }}
+            >
             <View style={styles.headerLibrary}>
-                <Text style = {{marginLeft : 100}}>Your Library</Text>
+                <Text style = {{marginLeft : 25, fontSize : 25, fontWeight : 'bold'}}>Your Library</Text>
                 <TouchableOpacity style = {{marginRight : 100}}>
                     <FontAwesome name="search" style={{
                         marginHorizontal:20,
@@ -30,93 +73,36 @@ export default function YourLibrary() {
                     }} size={20}/>
                 </TouchableOpacity>
             </View>
-            <View>
+            <View style = {{marginLeft : 15}}>
                 <FlatList
-                    data={data}
+                    data={tags}
                     keyExtractor={(item) => item.id}
+                    
                     renderItem={({ item }) => (
-                        <TouchableOpacity style = {styles.item}>
+                        <TouchableOpacity style = {styles.item}
+                            onPress={() => handleTagPress(item.title)}
+                        >
                             <Text>{item.title}</Text>
                         </TouchableOpacity>
                     )}
-                    horizontal={true} // Cài đặt để hiển thị theo chiều ngang
-                    showsHorizontalScrollIndicator={false} // Ẩn thanh cuộn ngang (nếu muốn)
+                    horizontal={true} 
+                    showsHorizontalScrollIndicator={false} 
+                    
                 />
             </View>
 
             <View style={{ paddingHorizontal: 10, marginBottom: 10 }}>
-                <FlatList
-                    data={verticalData}
-                    keyExtractor={(item) => item.id}
-                    renderItem={({ item }) => (
-                        <TouchableOpacity style={styles.verticalItem}>
-                            <Text>{item.title}</Text>
-                        </TouchableOpacity>
-                    )}
-                    showsVerticalScrollIndicator={false}
-                />
+            <FlatList
+                data={songs}
+                renderItem={renderSongItem}
+                keyExtractor={(item) => item.id}
+                contentContainerStyle={styles.songList}
+            />
             </View>
-
-            <ScrollView 
-                style={styles.container}
-                showsVerticalScrollIndicator={false} 
-                showsHorizontalScrollIndicator={false} 
-                contentContainerStyle={{ flexGrow: 1 }}
-            >
-            
+                        
             </ScrollView>
-
-
-            <View style={{ 
-                flexDirection: 'row', 
-                justifyContent: 'space-around', 
-                padding: 20,
-                borderTopWidth:1,
-                borderColor:'grey',
-                height:75 }}>
-                <TouchableOpacity style={{justifyContent:'center',alignItems:'center'}}>
-                <FontAwesome name="home" size={20} style={{color:'grey',}} />
-                <Text style={{
-                    fontSize:13,
-                    fontWeight:500,
-                    color:'grey',
-                }}>
-                    Home
-                </Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={{justifyContent:'center',alignItems:'center'}}>
-                <FontAwesome name="search" size={20} style={{color:'grey',}}/>
-                <Text style={{
-                    fontSize:13,
-                    fontWeight:500,
-                    color:'grey',
-                }}
-                onPress={() => navigation.navigate('Search')}
-                >
-                    Search
-                </Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={{justifyContent:'center',alignItems:'center'}}>
-                <FontAwesome name="newspaper-o" size={20} style={{color:'grey',}}/> 
-                <Text style={{
-                    fontSize:13,
-                    fontWeight:500,
-                    color:'grey',
-                }}>
-                    Feed
-                </Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={{justifyContent:'center',alignItems:'center'}}>
-                <FontAwesome name="book" size={20} style={{color:'grey',}}/>
-                <Text style={{
-                    fontSize:13,
-                    fontWeight:500,
-                    color:'grey',
-                }}>
-                    Library
-                </Text>
-                </TouchableOpacity>
-            </View>
+            <Playing/>
+            <Footer/>
         </SafeAreaView>
     );
 }
@@ -137,4 +123,36 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
         borderRadius: 10,
       },
+      songList: {
+        paddingHorizontal: 16,
+        paddingBottom: 80,
+    },
+    songItem: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingVertical: 8,
+        borderBottomWidth: 1,
+        borderBottomColor: '#eee',
+    },
+    songImage: {
+        width: 100,
+        height: 100,
+        borderRadius: 8,
+        marginRight: 16,
+    },
+    songDetails: {
+        flex: 1,
+    },
+    songTitle: {
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
+    songArtist: {
+        fontSize: 14,
+        color: 'gray',
+    },
+    songStats: {
+        fontSize: 12,
+        color: 'gray',
+    },
 });    
