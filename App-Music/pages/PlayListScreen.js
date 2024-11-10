@@ -1,13 +1,11 @@
-import React, { useState ,useEffect} from 'react';
+import React from 'react';
 import { View, Text, Image, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faShuffle } from '@fortawesome/free-solid-svg-icons';
 import { Footer } from '../layout/Footer';
-import { Audio } from 'expo-av';
 import { useMusic } from './MusicProvider';
 import Playing from './Playing';
-// import ReactPlayer from 'react-player';
 
 const songs = [
     {
@@ -68,7 +66,7 @@ const songs = [
 
 const PlayListScreen = ({ navigation ,route}) => {
     const { img,text } = route?.params;
-    const { songCurrent, isPlaying, playSong, playPauseSong } = useMusic();
+    const { songCurrent, playSong} = useMusic();
 
     const renderSongItem = ({ item }) => (
         <TouchableOpacity style={styles.songItem} onPress={()=>{
@@ -85,7 +83,6 @@ const PlayListScreen = ({ navigation ,route}) => {
             </TouchableOpacity>
         </TouchableOpacity>
     );
-        console.log(songCurrent);
     return (
         <View style={styles.container}>
             <View style={styles.header}>

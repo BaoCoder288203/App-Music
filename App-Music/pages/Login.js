@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, View, Text, StyleSheet, SafeAreaView, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, Image, TouchableOpacity } from 'react-native';
 
 export default function Login({ navigation }) {
   return (
@@ -16,7 +16,7 @@ export default function Login({ navigation }) {
             justifyContent: 'space-between',
             alignItems: 'center'
           }}>
-            <View style={{ flex: 1, width: 180 }}>
+            <View style={{  width: 180 }}>
               <Text style={{
                 fontSize: 35,
                 fontWeight: 'bold',
@@ -29,12 +29,17 @@ export default function Login({ navigation }) {
             <View style={styles.btns}>
               <TouchableOpacity
                 style={styles.btn1}
-                onPress={() => navigation.navigate('Home')}>  {/* Chuyển đến Home */}
-                <Text style={styles.textBtn1}> Create an account </Text>
+                onPress={() => navigation.navigate('PremiumScreen')}>  
+                <Text style={styles.textBtn1}> Start with Premium </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.btn2}
-                onPress={() => navigation.navigate('Home')}>  {/* Chuyển đến Home */}
+                onPress={() => navigation.navigate('Home')}>  
+                <Text style={styles.textBtn1}> Create an account </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.btn3}
+                onPress={() => navigation.navigate('Home')}>  
                 <Text style={styles.textBtn2}> I already have an account </Text>
               </TouchableOpacity>
             </View>
@@ -70,7 +75,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '90%',
-    height: '100%'
+    height: '100%',
+    gap:20,
   },
   textBtn1: {
     color: 'white',
@@ -85,7 +91,7 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   btn1: {
-    backgroundColor: 'black',
+    backgroundColor: '#1d1d1d',
     borderRadius: 50,
     width: '100%',
     paddingTop: 15,
@@ -93,6 +99,13 @@ const styles = StyleSheet.create({
     marginTop: 50,
   },
   btn2: {
+    backgroundColor: '#1d1d1d',
+    borderRadius: 50,
+    width: '100%',
+    paddingTop: 15,
+    paddingBottom: 15,
+  },
+  btn3: {
     backgroundColor: 'white',
     borderRadius: 50,
     width: '100%',
