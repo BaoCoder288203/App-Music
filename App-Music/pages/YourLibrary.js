@@ -64,12 +64,14 @@ export default function YourLibrary({navigation}) {
             >
             <View style={styles.headerLibrary}>
                 <Text style = {{marginLeft : 25, fontSize : 25, fontWeight : 'bold'}}>Your Library</Text>
-                <TouchableOpacity style = {{marginRight : 100}}>
+                <TouchableOpacity style = {{marginRight : 100}}
+                    onPress={()=>navigation.navigate('Search')}
+                >
                     <FontAwesome name="search" style={{
                         marginHorizontal:20,
                         position:'absolute',
                         top:10,
-                        left:-5,
+                        left : 20
                     }} size={20}/>
                 </TouchableOpacity>
             </View>
@@ -91,7 +93,7 @@ export default function YourLibrary({navigation}) {
                 />
             </View>
 
-            <View style={{ paddingHorizontal: 10, marginBottom: 10 }}>
+            <View style={{ paddingHorizontal: 10, marginBottom: 10, marginTop : 20 }}>
             <FlatList
                 data={songs}
                 renderItem={renderSongItem}
@@ -118,10 +120,15 @@ const styles = StyleSheet.create({
         marginVertical:10,
     },
     item: {
-        backgroundColor: '#f9c2ff',
+        backgroundColor: 'lightgray',
         padding: 20,
         marginHorizontal: 10,
         borderRadius: 10,
+        width : 100,
+        height : 20,
+        justifyContent : 'center',
+        alignItems : 'center',
+        marginTop : 20,
       },
       songList: {
         paddingHorizontal: 16,
@@ -135,8 +142,8 @@ const styles = StyleSheet.create({
         borderBottomColor: '#eee',
     },
     songImage: {
-        width: 100,
-        height: 100,
+        width: 60,
+        height: 60,
         borderRadius: 8,
         marginRight: 16,
     },
