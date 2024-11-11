@@ -55,41 +55,47 @@ export default function YourPlaylists({navigation}) {
     return(
         <SafeAreaView style = {{flex : 1}}>
             <View style = {styles.headerPlaylists}>
-                <TouchableOpacity >
+                <TouchableOpacity 
+                  onPress={()=> navigation.navigate('YourLibrary')}
+                >
                     <FontAwesome name="angle-left" size={24} color="gray" />
                 </TouchableOpacity>
 
                 <Text style = {{fontSize : 16, color : 'gray'}}>Playlists</Text>
 
-                <TouchableOpacity>
+                <TouchableOpacity style = {{marginLeft : 10}} >
                     <MaterialIcons name="cast" size={24} color="gray" />
                 </TouchableOpacity>
             </View>
             <View>
                 <Text style = {{fontWeight : 'bold', fontSize : 25, margin : 20,}}>Your Playlists</Text>
 
-                {/* FlatList for playlists */}
                 <FlatList
-                data={playlists}
-                keyExtractor={(item) => item.title}
-                renderItem={({ item }) => (
-                    <View style={styles.playlistContainer}>
-                        <TouchableOpacity style = {{flexDirection : 'row'}}>
-                            <Image source={item.img} style={styles.imgPlaylist} />
-                            <View style = {{marginLeft : 20}}>
-                                <Text style={styles.playlistTitle}>{item.title}</Text>
-                                <Text style={styles.playlistArtist}>by {item.artist}</Text>
-                                <Text style={styles.songCount}>{item.songs.length} songs</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity 
-                            onPress={()=> navigation.navigate('PlayListScreen')}
-                        >
-                            <FontAwesome name="angle-right" size={24} color="gray" />
-                        </TouchableOpacity>
-                    </View>
-                )}
+                  data={playlists}
+                  keyExtractor={(item) => item.title}
+                  renderItem={({ item }) => (
+                      <View style={styles.playlistContainer}>
+                          <TouchableOpacity style = {{flexDirection : 'row'}}>
+                              <Image source={item.img} style={styles.imgPlaylist} />
+                              <View style = {{marginLeft : 20}}>
+                                  <Text style={styles.playlistTitle}>{item.title}</Text>
+                                  <Text style={styles.playlistArtist}>by {item.artist}</Text>
+                                  <Text style={styles.songCount}>{item.songs.length} songs</Text>
+                              </View>
+                          </TouchableOpacity>
+                          <TouchableOpacity 
+                              onPress={()=> navigation.navigate('PlayListScreen')}
+                          >
+                              <FontAwesome name="angle-right" size={24} color="gray" />
+                          </TouchableOpacity>
+                      </View>
+                  )}
                 />
+            </View>
+            <View style = {{position : 'absolute', bottom : 80, right : 50,}}>
+              <TouchableOpacity style = {{backgroundColor : 'black', width : 60, height : 60, borderRadius : 30, justifyContent : 'center', alignItems : 'center'}}>
+                <Text style = {{color : 'white', fontSize : 50, textAlignVertical : 'center', marginBottom : 10}}>+</Text>
+              </TouchableOpacity>
             </View>
         </SafeAreaView>
     );

@@ -28,8 +28,8 @@ export default function App() {
                     <Stack.Screen name="Search" component={Search} options={{ headerShown: false }}/>
                     <Stack.Screen name="Feed" component={Feed} options={{ headerShown: false }}/>
                     <Stack.Screen name="ArtistProfileScreen" component={ArtistProfileScreen}/>
-                    <Stack.Screen name="YourLibrary" component={YourLibrary}/>
-                    <Stack.Screen name="YourPlaylists" component={YourPlaylists}/>
+                    <Stack.Screen name="YourLibrary" component={YourLibrary} options={{ headerShown: false }} />
+                    <Stack.Screen name="YourPlaylists" component={YourPlaylists} options={{ headerShown: false }} />
                     <Stack.Screen name="PremiumScreen" component={PremiumScreen} options={{headerShown: false}} />
                     <Stack.Screen name="PremiumChoiceScreen" component={PremiumChoiceScreen} options={{headerShown: false}}/>
                 </Stack.Navigator>
