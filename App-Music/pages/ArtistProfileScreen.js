@@ -11,10 +11,15 @@ import { SafeAreaView, ScrollView } from 'react-native-web';
 
 
 const ArtistProfileScreen = ({ route }) => {
-  const { image, name, follows, albums, about, other } = route.params;
-  const { songCurrent, isPlaying, playSong, playPauseSong } = useMusic();
+  const { img, name, follows, albums, about, other } = route.params;
+  const { playSong } = useMusic();
+  const [expanded, setExpanded] = useState(false);
 
   const formattedFollows = follows >= 1000 ? `${(follows / 1000).toFixed(1)}K` : follows.toString();
+
+  const handlePlaySong = ()=>{
+    playSong(songs[0]);
+  }
 
   const renderSongItem = ({ item }) => (
     <TouchableOpacity style={styles.songItem} onPress={()=>{
@@ -32,7 +37,6 @@ const ArtistProfileScreen = ({ route }) => {
     </TouchableOpacity>
     );
 
-    const [expanded, setExpanded] = useState(false);
 
   return (
     <SafeAreaView style={{flex : 1}}>
@@ -43,9 +47,8 @@ const ArtistProfileScreen = ({ route }) => {
         contentContainerStyle={{ flexGrow: 1 }}
         >
             <View>
-                {/* Hiển thị thông tin nghệ sĩ */}
                 <View style={{justifyContent : 'center', alignItems : 'center', width : '100%'}}>
-                    <Image source={image} />
+                    <Image source={img} style={{width:200,height:200,borderRadius:'50%',margin:20}}/>
                     <Text style = {{fontWeight: 'bold', fontSize : 20}}>{name}</Text>
                     <Text style = {{color : 'gray'}}>{formattedFollows} Followers</Text>
                     <View style={{
@@ -76,7 +79,7 @@ const ArtistProfileScreen = ({ route }) => {
                                 <FontAwesomeIcon icon={faShuffle} size={20} color="grey"/>
                             </TouchableOpacity>
                             <TouchableOpacity>
-                                <FontAwesome name="play-circle" size={45} color="black" />
+                                <FontAwesome name="play-circle" size={45} color="black" onPress={handlePlaySong} />
                             </TouchableOpacity> 
                         </View>
                     </View>
@@ -91,7 +94,6 @@ const ArtistProfileScreen = ({ route }) => {
                     />
                 </View>
                     
-                {/* Hiển thị Album */}
                 <View style = {{marginHorizontal : 20,}}>
                     <Text style = {{fontWeight: 'bold', fontSize : 20}}>Albums</Text>
                     <br/>
@@ -109,7 +111,6 @@ const ArtistProfileScreen = ({ route }) => {
                     />
                 </View>
 
-                {/* Hiển thị About */}
                 <View style = {{marginHorizontal : 20, marginTop : 20}}>
                     <Text style = {{fontWeight: 'bold', fontSize : 20}}>About</Text>
                     {about.map((item, index) => (
@@ -129,7 +130,6 @@ const ArtistProfileScreen = ({ route }) => {
                     ))}
                 </View>
 
-                {/* Hiển thị Other */}
                 <View style = {{marginHorizontal : 20, marginTop : 20}}>
                     <Text style = {{fontWeight: 'bold', fontSize : 20}}>Fans also like</Text>
                     <FlatList

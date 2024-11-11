@@ -55,9 +55,7 @@ export default function YourPlaylists({navigation}) {
     return(
         <SafeAreaView style = {{flex : 1}}>
             <View style = {styles.headerPlaylists}>
-                <TouchableOpacity 
-                    onPress={()=> navigation.navigate('YourLibrary')}
-                >
+                <TouchableOpacity >
                     <FontAwesome name="angle-left" size={24} color="gray" />
                 </TouchableOpacity>
 

@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 
 export default function Playing() {
     const navigation = useNavigation();
-    const { songCurrent, isPlaying, playSong, playPauseSong } = useMusic();
+    const { songCurrent, isPlaying, playPauseSong } = useMusic();
   return (
     <View>
     {

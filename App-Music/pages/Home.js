@@ -43,7 +43,6 @@ const trendingAlbums = [
   { image: require('../all_images/Home - Audio Listing/Image 45.png'), title: 'In the Lonely Hour', artist: 'Sam Smith' },
 ];
 
-
 const popularArtists = [
   { image: require('../all_images/Home - Audio Listing/Image 39.png'), 
     name: 'Elton John',
@@ -105,7 +104,7 @@ const popularArtists = [
       {image: require('../all_images/Artist Profile/Image 76.png'), title:'Tempor', artist:'Tyler And'},
     ],
    },
-  { image: require('../all_images/Home - Audio Listing/Image 39.png'), 
+  { image: require('../all_images/Artists/taylor-swift.webp'), 
     name: 'Taylor Swift',
     follows : '65100',
     albums:[
@@ -125,7 +124,7 @@ const popularArtists = [
       {image: require('../all_images/Artist Profile/Image 76.png'), title:'Tempor', artist:'Tyler And'},
     ],
    },
-  { image: require('../all_images/Home - Audio Listing/Image 40.png'), 
+  { image: require('../all_images/Artists/BrunoMars.jpg'), 
     name: 'Bruno Mars',
     follows : '65100',
     albums:[
@@ -145,7 +144,7 @@ const popularArtists = [
       {image: require('../all_images/Artist Profile/Image 76.png'), title:'Tempor', artist:'Tyler And'},
     ],
    },
-  { image: require('../all_images/Home - Audio Listing/Image 41.png'), 
+  { image: require('../all_images/Artists/Ariana-Grande.jpg'), 
     name: 'Ariana Grande',
     follows : '65100',
     albums:[
@@ -165,7 +164,7 @@ const popularArtists = [
       {image: require('../all_images/Artist Profile/Image 76.png'), title:'Tempor', artist:'Tyler And'},
     ],
    },
-  { image: require('../all_images/Home - Audio Listing/Image 39.png'), 
+  { image: require('../all_images/Artists/Billie-Eilish.jpg'),
     name: 'Billie Eilish',
     follows : '65100',
     albums:[
@@ -185,7 +184,7 @@ const popularArtists = [
       {image: require('../all_images/Artist Profile/Image 76.png'), title:'Tempor', artist:'Tyler And'},
     ],
    },
-  { image: require('../all_images/Home - Audio Listing/Image 40.png'), 
+  { image: require('../all_images/Artists/JusstinBieber.jpg'), 
     name: 'Justin Bieber',
     follows : '65100',
     albums:[
@@ -205,7 +204,7 @@ const popularArtists = [
       {image: require('../all_images/Artist Profile/Image 76.png'), title:'Tempor', artist:'Tyler And'},
     ],
    },
-  { image: require('../all_images/Home - Audio Listing/Image 41.png'), 
+  { image: require('../all_images/Artists/KatyPerry.png'), 
     name: 'Katy Perry',
     follows : '65100',
     albums:[
@@ -225,7 +224,7 @@ const popularArtists = [
       {image: require('../all_images/Artist Profile/Image 76.png'), title:'Tempor', artist:'Tyler And'},
     ],
    },
-  { image: require('../all_images/Home - Audio Listing/Image 39.png'), 
+  { image: require('../all_images/Artists/Drake.jpg'), 
     name: 'Drake',
     follows : '65100',
     albums:[
@@ -273,16 +272,15 @@ export default function Home({ navigation }) {
   
   const renderPopularArtistItem = ({ item }) => (
     <TouchableOpacity style={styles.product3}
-      onPress={() => navigation.navigate('ArtistProfileScreen', {
-        image: item.image,
-        name: item.name,
-        follows: item.follows,
-        albums: item.albums,
-        about: item.about,
-        other: item.other
-      })}
+      onPress={() => navigation.navigate('ArtistProfileScreen', {img: item.image, name: item
+        .name, follows: item.follows, albums: item.albums, about: item.about
+        , other: item.other})}
     >
-      <Image source={item.image} />
+      <Image source={item.image} style={{
+        width: 150,
+        height: 150,
+        borderRadius:'50%',
+      }}/>
       <Text style={styles.artistName}>{item.name}</Text>
       <TouchableOpacity style={{ width: 70, margin: '0 auto' }}>
         <Text style={styles.btnFollow}>Follow</Text>

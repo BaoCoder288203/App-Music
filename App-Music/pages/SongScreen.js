@@ -1,11 +1,10 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { SafeAreaView, TouchableOpacity, ScrollView, TextInput, Image, Text, View, StyleSheet, FlatList } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { TouchableOpacity, Image, Text, View, StyleSheet } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { FontAwesome } from '@expo/vector-icons';
 import { faShuffle } from '@fortawesome/free-solid-svg-icons';
 import { songs, useMusic } from './MusicProvider';
 import Slider from '@react-native-community/slider';
-import Video from 'react-native-video';
 import { Audio } from 'expo-av';
 
 export default function SongScreen({ navigation, route }) {
@@ -57,15 +56,18 @@ export default function SongScreen({ navigation, route }) {
     setIsPlaying(true);
   };
 
-  const handleLoad = (meta) => {
-    setDuration(meta.duration); 
+  const handleSeek = async (value) => {
+    if (sound) {
+      await sound.setPositionAsync(value);
+      setCurrentTime(value);
+    }
   };
-
+  
   return (
     <View style={styles.nowPlayingBar}>
       <View style={{ flex: 4, width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
         <Image source={songCurrent.artwork} style={styles.nowPlayingImage} />
-        <View style={styles.nowPlayingDetails}>
+        <View>
           <Text style={styles.nowPlayingTitle}>{songCurrent.title}</Text>
           <Text style={styles.nowPlayingArtist}>{songCurrent.artist}</Text>
         </View>
@@ -73,18 +75,6 @@ export default function SongScreen({ navigation, route }) {
 
       <View style={{ flex: 1, width: '100%', height: '100%', padding: 20, justifyContent: 'center', alignItems: 'center' }}>
         <View style={styles.progressContainer}>
-          <Text>{formatTime(currentTime)}</Text>
-          <Slider
-            style={{ flex: 1 }}
-            minimumValue={0}
-            maximumValue={duration}
-            value={currentTime}
-            onValueChange={handleSeek}
-            minimumTrackTintColor="#1DB954"
-            maximumTrackTintColor="#D3D3D3"
-            thumbTintColor="#1DB954"
-          />
-          <Text>{formatTime(duration)}</Text>
         </View>
 
         <View style={styles.nowPlayingIcons}>
@@ -116,15 +106,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderTopWidth: 1,
     borderTopColor: '#eee',
-    backgroundColor: '#fff',
+    backgroundColor: '#bbb',
   },
   nowPlayingImage: {
-      width: 100,
-      height: 100,
+      width: 300,
+      height: 300,
       borderRadius: 8,
       marginRight: 8,
-  },
-  nowPlayingDetails: {
+      marginBottom:20,
   },
   nowPlayingTitle: {
       fontSize: 14,

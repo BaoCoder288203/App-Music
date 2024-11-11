@@ -74,21 +74,21 @@ export const MusicProvider = ({ children }) => {
 
         const { sound: newSound, status } = await Audio.Sound.createAsync(
             { uri: song.url },
-            { onPlaybackStatusUpdate: (status) => {
+            { 
+                shouldPlay: true,
+                onPlaybackStatusUpdate: (status) => {
                 if (status.isLoaded) {
                     if (status.duration > 0 && !isLoaded) {
-                        setDuration(status.duration); // Lấy thời gian bài hát khi tải xong
-                        setIsLoaded(true); // Đánh dấu bài hát đã tải xong
+                        setDuration(status.durationMillis || 0); 
+                        setIsLoaded(true);
                     }
                 }
             }}
         );
 
-        // Lưu sound và song hiện tại
         setSound(newSound);
         setSongCurrent(song);
 
-        // Bắt đầu phát nhạc
         if (isLoaded) {
             await newSound.playAsync();
             setIsPlaying(true);

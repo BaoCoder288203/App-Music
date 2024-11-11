@@ -14,7 +14,7 @@ const tags = [
   ];
 
 export default function YourLibrary({navigation}) {
-    const { songCurrent, isPlaying, playSong, playPauseSong } = useMusic();
+    const { playSong } = useMusic();
 
     const handleTagPress = (tagTitle) => {
         switch(tagTitle) {

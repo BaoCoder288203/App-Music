@@ -7,12 +7,12 @@ import Login from './pages/Login';
 import PlayListScreen from './pages/PlayListScreen';
 import SongScreen from './pages/SongScreen';
 import Search from './pages/Search';
-import ArtistProfileScreen from './pages/ArtistProfileScreen';
+import Feed from './pages/Feed';
 import PremiumScreen from './pages/PremiumScreen';
 import PremiumChoiceScreen from './pages/PremiumChoiceScreen';
+import ArtistProfileScreen from './pages/ArtistProfileScreen';
 import YourLibrary from './pages/YourLibrary';
 import YourPlaylists from './pages/YourPlaylists';
-
 
 const Stack = createNativeStackNavigator();
 
@@ -26,11 +26,12 @@ export default function App() {
                     <Stack.Screen name="PlayListScreen" component={PlayListScreen} />
                     <Stack.Screen name="SongScreen" component={SongScreen} />
                     <Stack.Screen name="Search" component={Search} options={{ headerShown: false }}/>
-                    <Stack.Screen name="ArtistProfileScreen" component={ArtistProfileScreen}  />
+                    <Stack.Screen name="Feed" component={Feed} options={{ headerShown: false }}/>
+                    <Stack.Screen name="ArtistProfileScreen" component={ArtistProfileScreen}/>
+                    <Stack.Screen name="YourLibrary" component={YourLibrary}/>
+                    <Stack.Screen name="YourPlaylists" component={YourPlaylists}/>
                     <Stack.Screen name="PremiumScreen" component={PremiumScreen} options={{headerShown: false}} />
-                    <Stack.Screen name="PremiumChoiceScreen" component={PremiumChoiceScreen} options={{headerShown: false}} />
-                    <Stack.Screen name="YourLibrary" component={YourLibrary} options={{headerShown: false}} />
-                    <Stack.Screen name="YourPlaylists" component={YourPlaylists} options={{headerShown: false}} />
+                    <Stack.Screen name="PremiumChoiceScreen" component={PremiumChoiceScreen} options={{headerShown: false}}/>
                 </Stack.Navigator>
             </NavigationContainer>
         </MusicProvider>
