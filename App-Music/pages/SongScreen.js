@@ -8,22 +8,19 @@ import Slider from '@react-native-community/slider';
 import { Audio } from 'expo-av';
 
 export default function SongScreen({ navigation, route }) {
-  const { songCurrent, isPlaying, playPauseSong, setIsPlaying, playSong, duration ,setDuration} = useMusic();
+  const { songCurrent, isPlaying, playPauseSong, setIsPlaying, playSong, duration } = useMusic();
   const [currentTime, setCurrentTime] = useState(0);
   const [sound, setSound] = useState();
   
-  useEffect(() => {
+  useEffect(() => { 
     if (isPlaying && songCurrent) {
       const playAudio = async () => {
         const { sound } = await Audio.Sound.createAsync(
-          { uri: songCurrent.uri },
+          { uri: songCurrent.url },
           {
             onPlaybackStatusUpdate: (status) => {
               if (status.isLoaded) {
-                setCurrentTime(status.position);
-                if (duration !== status.duration) {
-                  setDuration(status.duration); 
-                }
+                setCurrentTime(status.positionMillis);
               }
             },
           }
@@ -42,27 +39,13 @@ export default function SongScreen({ navigation, route }) {
     }
   }, [isPlaying, songCurrent]);
 
-  const playNextSong = (id) => {
-    const indexSong = songs.findIndex((song) => song.id === id);
-    const nextSong = indexSong === songs.length - 1 ? songs[0] : songs[indexSong + 1];
-    playSong(nextSong);
-    setIsPlaying(true);
-  };
-
-  const playBackSong = (id) => {
-    const indexSong = songs.findIndex((song) => song.id === id);
-    const prevSong = indexSong === 0 ? songs[songs.length - 1] : songs[indexSong - 1];
-    playSong(prevSong);
-    setIsPlaying(true);
-  };
-
   const handleSeek = async (value) => {
     if (sound) {
       await sound.setPositionAsync(value);
       setCurrentTime(value);
     }
   };
-  
+
   return (
     <View style={styles.nowPlayingBar}>
       <View style={{ flex: 4, width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
@@ -75,6 +58,16 @@ export default function SongScreen({ navigation, route }) {
 
       <View style={{ flex: 1, width: '100%', height: '100%', padding: 20, justifyContent: 'center', alignItems: 'center' }}>
         <View style={styles.progressContainer}>
+          <Slider
+            style={{ width: 200, height: 40 }}
+            minimumValue={0}
+            maximumValue={duration} 
+            value={currentTime}
+            onSlidingComplete={handleSeek}
+            minimumTrackTintColor="#FFFFFF"
+            maximumTrackTintColor="#000000"
+          />
+          <Text>{Math.floor(currentTime / 1000)}s / {duration}</Text> 
         </View>
 
         <View style={styles.nowPlayingIcons}>
@@ -101,33 +94,33 @@ export default function SongScreen({ navigation, route }) {
 
 const styles = StyleSheet.create({
   nowPlayingBar: {
-    height:'100%',
-    justifyContent:'center',
+    height: '100%',
+    justifyContent: 'center',
     alignItems: 'center',
     borderTopWidth: 1,
     borderTopColor: '#eee',
     backgroundColor: '#bbb',
   },
   nowPlayingImage: {
-      width: 300,
-      height: 300,
-      borderRadius: 8,
-      marginRight: 8,
-      marginBottom:20,
+    width: 300,
+    height: 300,
+    borderRadius: 8,
+    marginRight: 8,
+    marginBottom: 20,
   },
   nowPlayingTitle: {
-      fontSize: 14,
-      fontWeight: 'bold',
+    fontSize: 14,
+    fontWeight: 'bold',
   },
   nowPlayingArtist: {
-      fontSize: 12,
-      color: 'gray',
+    fontSize: 12,
+    color: 'gray',
   },
   nowPlayingIcons: {
-    flex:1,
-    width:'100%',
-    height:'100%',
-    marginHorizontal:30,
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    marginHorizontal: 30,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -138,4 +131,4 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     marginTop: 8,
   },
-})
+});

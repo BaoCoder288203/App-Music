@@ -11,7 +11,6 @@ export const songs = [
         url: "https://samplesongs.netlify.app/Death%20Bed.mp3",
         id: '1',
         plays: '2.1M',
-        duration: '3:36'
     },
     {
         title: "Bad Liar",
@@ -20,7 +19,6 @@ export const songs = [
         url: "https://samplesongs.netlify.app/Bad%20Liar.mp3",
         id: '2',
         plays: '68M', 
-        duration: '3:35'
     },
     {
         title: "Faded",
@@ -29,7 +27,6 @@ export const songs = [
         url: "https://samplesongs.netlify.app/Faded.mp3",
         id: '3', 
         plays: '93M', 
-        duration: '4:39'
     },
     {
         title: "Hate Me",
@@ -38,7 +35,6 @@ export const songs = [
         url: "https://samplesongs.netlify.app/Hate%20Me.mp3",
         id: '4', 
         plays: '9M', 
-        duration: '7:48'
     },
     {
         title: "Solo",
@@ -47,7 +43,6 @@ export const songs = [
         url: "https://samplesongs.netlify.app/Solo.mp3",
         id: '5', 
         plays: '23M', 
-        duration: '3:36'
     },
     {
         title: "Without Me",
@@ -56,7 +51,6 @@ export const songs = [
         url: "https://samplesongs.netlify.app/Without%20Me.mp3",
         id: '6', 
         plays: '10M', 
-        duration: '6:22'
     },
 ]
 
@@ -64,8 +58,14 @@ export const MusicProvider = ({ children }) => {
     const [songCurrent, setSongCurrent] = useState(null);
     const [sound, setSound] = useState(null);
     const [isPlaying, setIsPlaying] = useState(false);
-    const [duration, setDuration] = useState(0);
+    const [duration, setDuration] = useState('0:00'); // Đặt mặc định là chuỗi "0:00"
     const [isLoaded, setIsLoaded] = useState(false);
+
+    const formatDuration = (millis) => {
+        const minutes = Math.floor(millis / 60000);
+        const seconds = ((millis % 60000) / 1000).toFixed(0);
+        return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    };
 
     const playSong = async (song) => {
         if (sound) {
@@ -77,13 +77,14 @@ export const MusicProvider = ({ children }) => {
             { 
                 shouldPlay: true,
                 onPlaybackStatusUpdate: (status) => {
-                if (status.isLoaded) {
-                    if (status.duration > 0 && !isLoaded) {
-                        setDuration(status.durationMillis || 0); 
-                        setIsLoaded(true);
+                    if (status.isLoaded) {
+                        if (status.durationMillis > 0 && !isLoaded) {
+                            setDuration(formatDuration(status.durationMillis)); 
+                            setIsLoaded(true);
+                        }
                     }
                 }
-            }}
+            }
         );
 
         setSound(newSound);
@@ -112,10 +113,11 @@ export const MusicProvider = ({ children }) => {
     }, [sound]);
 
     return (
-        <MusicContext.Provider value={{ songCurrent, isPlaying,setIsPlaying, playSong, playPauseSong, duration,setDuration }}>
+        <MusicContext.Provider value={{ songCurrent, isPlaying, setIsPlaying, playSong, playPauseSong, duration, setDuration }}>
             {children}
         </MusicContext.Provider>
     );
 };
+
 
 export const useMusic = () => useContext(MusicContext);

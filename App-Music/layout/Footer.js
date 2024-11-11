@@ -22,7 +22,7 @@ export const Footer = () => {
         </TouchableOpacity>
     
         <TouchableOpacity style={styles.footerButton} onPress={()=>navigation.navigate('YourLibrary')}>
-            <FontAwesome name="library" size={20} style={styles.footerIcon} />
+            <FontAwesome name="book" size={20} style={styles.footerIcon} />
             <Text style={styles.footerText}>Library</Text>
         </TouchableOpacity>
     </View>

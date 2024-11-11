@@ -58,9 +58,7 @@ export default function YourPlaylists({navigation}) {
                 <TouchableOpacity >
                     <FontAwesome name="angle-left" size={24} color="gray" />
                 </TouchableOpacity>
-
                 <Text style = {{fontSize : 16, color : 'gray'}}>Playlists</Text>
-
                 <TouchableOpacity>
                     <MaterialIcons name="cast" size={24} color="gray" />
                 </TouchableOpacity>

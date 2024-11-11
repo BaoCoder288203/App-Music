@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity, TextInput } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
+import {MaterialIcons} from '@expo/vector-icons';
+import { Footer } from '../layout/Footer';
 
 const data = [
   {
@@ -39,7 +41,7 @@ const data = [
   },
 ];
 
-const Feed = () => {
+const   Feed = () => {
   const [selectedPostId, setSelectedPostId] = useState(null);
   const [flatLike,setFlatLike] = useState(false);
 
@@ -134,12 +136,21 @@ const Feed = () => {
   );
 
   return (
+    <View style={{flex:1}}>
+      <View style={{flexDirection:'row',justifyContent:'space-between',padding:10,backgroundColor:'white',fontSize:15}}>
+        <Text style = {{fontSize : 20,fontWeight:'bold', color : 'gray'}}>Feed</Text>
+        <TouchableOpacity style={{}}>
+          <MaterialIcons name="cast" size={24} color="gray" />
+        </TouchableOpacity>
+      </View>
       <FlatList
         data={data}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.container}
-      />
+        />
+        <Footer/>
+    </View>
   );
 };
 
