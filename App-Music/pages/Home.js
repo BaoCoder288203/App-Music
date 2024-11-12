@@ -322,7 +322,11 @@ export default function Home({ navigation }) {
               <FontAwesome name="bell" style={{
                 marginHorizontal: 20,
               }} size={20} />
-              <Image source={require('../all_images/Feed - Comment on an Audio/Avatar 8.png')} />
+              <TouchableOpacity 
+                onPress={()=> navigation.navigate('UserAccount')}
+              >
+                <Image source={require('../all_images/Feed - Comment on an Audio/Avatar 8.png')} />
+              </TouchableOpacity>
             </View>
           </View>
         </View>
