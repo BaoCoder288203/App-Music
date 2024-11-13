@@ -9,52 +9,119 @@ import Playing from './Playing';
 import { Footer } from '../layout/Footer';
 import { SafeAreaView, ScrollView } from 'react-native-web';
 
-const playlists = [
-    {
-      title: "Chill Beats",
-      artist: "Various Artists",
-      img: require('../all_images/My Playlists/Image 110.png'),
-      songs: [
+const dataUser = {
+    userId: "1",
+    name: "John Doe",
+    email: "johndoe@example.com",
+    avatarUrl: "https://example.com/avatar.jpg",
+    playlists: [
+      {
+        title: "Chill Beats",
+        artist: "Various Artists",
+        img: require('../all_images/My Playlists/Image 110.png'),
+        songs: [
+          { id: 1, title: "Calm Waves", duration: "3:15" },
+          { id: 2, title: "Mellow Breeze", duration: "4:20" },
+          { id: 3, title: "Soft Sunset", duration: "5:05" },
+        ]
+      },
+      {
+        title: "Workout Hits",
+        artist: "Various Artists",
+        img: require('../all_images/My Playlists/Image 111.png'),
+        songs: [
+          { id: 4, title: "High Energy", duration: "3:45" },
+          { id: 5, title: "Power Surge", duration: "4:00" },
+          { id: 6, title: "Full Speed", duration: "3:30" },
+        ]
+      }
+    ],
+    favoriteAlbums: [
+      {
+        albumId: "album1",
+        title: "Relaxing Vibes",
+        artist: "Calm Collective",
+        img: require('../all_images/My Playlists/Image 110.png'),
+        songsCount: 12
+      },
+      {
+        albumId: "album2",
+        title: "Pop Hits",
+        artist: "Various Artists",
+        img: require('../all_images/My Playlists/Image 111.png'),
+        songsCount: 15
+      }
+    ],
+    likedSongs: [
         {
-          id: 1,
-          title: "Calm Waves",
-          duration: "3:15",
+            title: "Death Bed",
+            artist: "Powfu",
+            artwork: require('../all_images/Playlist Details - Audio Listing/Image 51.png'),
+            url: "https://samplesongs.netlify.app/Death%20Bed.mp3",
+            id: '1',
+            plays: '2.1M',
+            duration: '3:36'
         },
         {
-          id: 2,
-          title: "Mellow Breeze",
-          duration: "4:20",
+            title: "Bad Liar",
+            artist: "Imagine Dragons",
+            artwork: require('../all_images/Playlist Details - Audio Listing/Image 52.png'),
+            url: "https://samplesongs.netlify.app/Bad%20Liar.mp3",
+            id: '2',
+            plays: '68M', 
+            duration: '3:35'
         },
         {
-          id: 3,
-          title: "Soft Sunset",
-          duration: "5:05",
-        },
-      ],
-    },
-    {
-      title: "Workout Hits",
-      artist: "Various Artists",
-      img: require('../all_images/My Playlists/Image 111.png'),
-      songs: [
-        {
-          id: 4,
-          title: "High Energy",
-          duration: "3:45",
+            title: "Faded",
+            artist: "Alan Walker",
+            artwork: require('../all_images/Playlist Details - Audio Listing/Image 53.png'),
+            url: "https://samplesongs.netlify.app/Faded.mp3",
+            id: '3', 
+            plays: '93M', 
+            duration: '4:39'
         },
         {
-          id: 5,
-          title: "Power Surge",
-          duration: "4:00",
+            title: "Hate Me",
+            artist: "Ellie Goulding",
+            artwork: require('../all_images/Playlist Details - Audio Listing/Image 54.png'),
+            url: "https://samplesongs.netlify.app/Hate%20Me.mp3",
+            id: '4', 
+            plays: '9M', 
+            duration: '7:48'
         },
         {
-          id: 6,
-          title: "Full Speed",
-          duration: "3:30",
+            title: "Solo",
+            artist: "Clean Bandit",
+            artwork: require('../all_images/Playlist Details - Audio Listing/Image 55.png'),
+            url: "https://samplesongs.netlify.app/Solo.mp3",
+            id: '5', 
+            plays: '23M', 
+            duration: '3:36'
         },
-      ],
-    },
-  ];
+        {
+            title: "Without Me",
+            artist: "Halsey",
+            artwork: require('../all_images/Playlist Details - Audio Listing/Image 56.png'),
+            url: "https://samplesongs.netlify.app/Without%20Me.mp3",
+            id: '6', 
+            plays: '10M', 
+            duration: '6:22'
+        },
+    ],
+    favoriteArtists: [
+        {
+          artistId: "artist1",
+          name: "Lo-fi Chill",
+          followers: 120000,
+        },
+        {
+          artistId: "artist2",
+          name: "The Classics",
+          followers: 95000,
+        }
+      ]
+  };
+  
 
 const UserAccount = ({navigation}) => {
     return(
@@ -87,12 +154,12 @@ const UserAccount = ({navigation}) => {
                     <View style={styles.userIcon}>
                         <FontAwesome name="user" size={30} color="black"/>
                     </View>
-                    <Text>UserName</Text>
+                    <Text>{dataUser.name}</Text>
                     <View></View>
                 </View>
                 <View style={styles.followStats}>
                     <View style = {{alignItems : 'center', width : 60}}>
-                        <Text>16</Text>
+                        <Text>{dataUser.favoriteArtists.length}</Text>
                         <Text>Following</Text>
                     </View>
                 </View>
@@ -112,13 +179,13 @@ const UserAccount = ({navigation}) => {
                         </View>
                         <View style = {{margin : 5}}>
                             <Text>Favorite</Text>
-                            <Text>Number of songs</Text>
+                            <Text>{dataUser.likedSongs.length} songs</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
                 <View style = {styles.favoritePlaylist}>
                     <View style = {{flexDirection : 'row', justifyContent : 'space-between', margin : 10}}>
-                        <Text>Playlist (number of playlist)</Text>
+                        <Text>Playlist ({dataUser.playlists.length})</Text>
 
                         <View style = {{flexDirection : 'row', justifyContent : 'space-around', width : 100}}>
                             <TouchableOpacity>
@@ -131,7 +198,7 @@ const UserAccount = ({navigation}) => {
                     </View>
 
                     <FlatList
-                    data={playlists}
+                    data={dataUser.playlists}
                     keyExtractor={(item) => item.title}
                     renderItem={({ item }) => (
                         <View style={styles.playlistContainer}>
@@ -149,7 +216,7 @@ const UserAccount = ({navigation}) => {
                 </View>
                 <View style = {styles.favoriteAlbum}>
                     <View style = {{flexDirection : 'row', justifyContent : 'space-between', margin : 10}}>
-                        <Text>Album (number of Album)</Text>
+                        <Text>Album ({dataUser.favoriteAlbums.length})</Text>
 
                         <View style = {{flexDirection : 'row'}}>
                             <TouchableOpacity>
@@ -159,7 +226,22 @@ const UserAccount = ({navigation}) => {
                     </View>
 
                     {/*Them flatlist album*/}
-
+                    <FlatList
+                        data={dataUser.favoriteAlbums}
+                        keyExtractor={(item) => item.albumId}
+                        renderItem={({ item }) => (
+                        <View style={styles.albumContainer}>
+                            <TouchableOpacity style={{ flexDirection: 'row' }}>
+                            <Image source={item.img} style={styles.imgPlaylist} />
+                            <View style={{ marginLeft: 20 }}>
+                                <Text style={styles.playlistTitle}>{item.title}</Text>
+                                <Text style={styles.playlistArtist}>by {item.artist}</Text>
+                                <Text style={styles.songCount}>{item.songsCount} songs</Text>
+                            </View>
+                            </TouchableOpacity>
+                        </View>
+                        )}
+                    />
                 </View>
                   
             </ScrollView>
@@ -244,7 +326,8 @@ const styles = StyleSheet.create({
         backgroundColor : 'lightgray',
         width : '95%',
         borderRadius : 20,
-    }
+    },
+    albumContainer: { marginBottom: 20, paddingHorizontal: 20, flexDirection: 'row' },
 });
 
 export default UserAccount;
