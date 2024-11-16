@@ -13,6 +13,7 @@ import PremiumChoiceScreen from './pages/PremiumChoiceScreen';
 import ArtistProfileScreen from './pages/ArtistProfileScreen';
 import YourLibrary from './pages/YourLibrary';
 import YourPlaylists from './pages/YourPlaylists';
+import UserAccount from './pages/UserAccount';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,7 +21,7 @@ export default function App() {
     return (
         <MusicProvider>
             <NavigationContainer>
-                <Stack.Navigator initialRouteName="Login">
+                <Stack.Navigator initialRouteName="Home">
                     <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
                     <Stack.Screen name="Home" component={Home} />
                     <Stack.Screen name="PlayListScreen" component={PlayListScreen} />
@@ -32,6 +33,7 @@ export default function App() {
                     <Stack.Screen name="YourPlaylists" component={YourPlaylists} options={{ headerShown: false }} />
                     <Stack.Screen name="PremiumScreen" component={PremiumScreen} options={{headerShown: false}} />
                     <Stack.Screen name="PremiumChoiceScreen" component={PremiumChoiceScreen} options={{headerShown: false}}/>
+                    <Stack.Screen name="UserAccount" component={UserAccount} />
                 </Stack.Navigator>
             </NavigationContainer>
         </MusicProvider>
