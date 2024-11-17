@@ -13,7 +13,7 @@ const dataUser = {
     userId: "1",
     name: "John Doe",
     email: "johndoe@example.com",
-    avatarUrl: "https://example.com/avatar.jpg",
+    avatarUrl: "../all_images/Feed - Audio Listing/Avatar 4.png",
     playlists: [
       {
         title: "Chill Beats",
@@ -133,10 +133,13 @@ const UserAccount = ({navigation}) => {
                 contentContainerStyle={{ flexGrow: 1 }}
             >
                 <View style={styles.userHeader}>
-                    <View>
-                        <Text>UserAccount</Text>
+                    <View style = {{flexDirection : 'row', justifyContent: 'space-between', width : 100, height : 70, alignItems : 'center'}}>
+                    <TouchableOpacity onPress={()=> navigation.navigate('Home')}>
+                        <FontAwesome name="angle-left" size={45} color="gray" style={{ right : 10,}} />
+                    </TouchableOpacity>
+                        <Text style = {{fontSize : 20, marginLeft : 10,fontWeight : 'bold'}}>UserAccount</Text>
                     </View>
-                    <View style = {{flexDirection: 'row', justifyContent : 'space-between', width : 100}}>
+                    <View style = {{flexDirection: 'row', justifyContent : 'space-between', width : 100, marginRight : 45,}}>
                         <TouchableOpacity>
                             <FontAwesome name="gear" size={24} color="black" />
                         </TouchableOpacity>
@@ -152,25 +155,28 @@ const UserAccount = ({navigation}) => {
                 </View>
                 <View style={styles.userInfo}>
                     <View style={styles.userIcon}>
-                        <FontAwesome name="user" size={30} color="black"/>
+                        <Image source={dataUser.avatarUrl} style = {{width : 60, height : 60}}/>
                     </View>
-                    <Text>{dataUser.name}</Text>
-                    <View></View>
-                </View>
-                <View style={styles.followStats}>
-                    <View style = {{alignItems : 'center', width : 60}}>
-                        <Text>{dataUser.favoriteArtists.length}</Text>
-                        <Text>Following</Text>
+                    
+                    <View style = {{marginLeft : 20, justifyContent : 'space-between'}}>
+                        <Text style = {{fontSize : 20, fontWeight : 'bold'}}>{dataUser.name}</Text>
+                        <View style={styles.followStats}>
+                            <View style = {{alignItems : 'center', width : 60}}>
+                                <Text style = {{fontSize : 14}}>{dataUser.favoriteArtists.length}</Text>
+                                <Text style = {{fontSize : 14}}>Following</Text>
+                            </View>
+                            <View style = {{alignItems : 'center', width : 60}}>
+                                <Text style = {{fontSize : 14}}>{dataUser.favoriteArtists.length}</Text>
+                                <Text style = {{fontSize : 14}}>Follower</Text>
+                            </View>
+                        </View>
                     </View>
                 </View>
-                <View style={styles.premiumNavigation}>
-                    <Text>Premium</Text>
-                    <TouchableOpacity 
-                    onPress={()=> navigation.navigate('PremiumScreen')}
-                    >
-                        <FontAwesome name="angle-right" size={24} color="gray" style = {{bottom : 1, left : 10}} />
-                    </TouchableOpacity>
-                </View>
+                
+                <TouchableOpacity style={styles.premiumNavigation} onPress={()=> navigation.navigate('PremiumScreen')}>
+                    <Text style = {{color : 'white', fontWeight : 'bold', fontSize : 16,}}>Premium</Text>
+                    <FontAwesome name="angle-right" size={24} color="white" style = {{right : 10}} />
+                </TouchableOpacity>
 
                 <View style = {styles.favoriteSongs}>
                     <TouchableOpacity style={styles.favoriteSongsButton}>
@@ -178,14 +184,14 @@ const UserAccount = ({navigation}) => {
                             <FontAwesome name="heart" size={24} color="white" />
                         </View>
                         <View style = {{margin : 5}}>
-                            <Text>Favorite</Text>
-                            <Text>{dataUser.likedSongs.length} songs</Text>
+                            <Text style = {{fontSize : 15, marginLeft : 10, fontWeight : 'bold', color : 'white'}}>Favorite</Text>
+                            <Text style = {{fontSize : 15, marginLeft : 10, color : 'white'}}>{dataUser.likedSongs.length} songs</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
                 <View style = {styles.favoritePlaylist}>
                     <View style = {{flexDirection : 'row', justifyContent : 'space-between', margin : 10}}>
-                        <Text>Playlist ({dataUser.playlists.length})</Text>
+                        <Text style = {{fontSize : 20, marginLeft : 10, fontWeight : 'bold'}}>Playlist ({dataUser.playlists.length})</Text>
 
                         <View style = {{flexDirection : 'row', justifyContent : 'space-around', width : 100}}>
                             <TouchableOpacity>
@@ -216,11 +222,11 @@ const UserAccount = ({navigation}) => {
                 </View>
                 <View style = {styles.favoriteAlbum}>
                     <View style = {{flexDirection : 'row', justifyContent : 'space-between', margin : 10}}>
-                        <Text>Album ({dataUser.favoriteAlbums.length})</Text>
+                        <Text style = {{fontSize : 20, marginLeft : 10, fontWeight : 'bold'}} >Album ({dataUser.favoriteAlbums.length})</Text>
 
-                        <View style = {{flexDirection : 'row'}}>
+                        <View style = {{flexDirection : 'row', marginRight : 10}}>
                             <TouchableOpacity>
-                                <FontAwesome6 name="list-check" size={24} color="black" />
+                                <FontAwesome6 name="list-check" size={24} color="black"  />
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -243,6 +249,10 @@ const UserAccount = ({navigation}) => {
                         )}
                     />
                 </View>
+                <TouchableOpacity style = {styles.signOutButton}>
+                    <Text>Sign out</Text>
+                    <FontAwesome name="sign-out" size={24} color="red" />
+                </TouchableOpacity>
                   
             </ScrollView>
             <Playing/>
@@ -254,7 +264,7 @@ const UserAccount = ({navigation}) => {
 const styles = StyleSheet.create({
     container:{
         flex : 1,
-        marginTop : 20,
+        marginTop : 30,
         marginLeft : 20, 
     },
     userHeader:{
@@ -264,29 +274,38 @@ const styles = StyleSheet.create({
     },
     userInfo: {
         margin : 20,
-        justifyContent : 'center',
+        borderRadius : 20,
+        backgroundColor : '#FFC1C1',
+        padding : 20,
+        width : '95%',
+        flexDirection : 'row',
+        
     }, 
     userIcon : {
-        width : 50,
-        height : 50,
         justifyContent : 'center',
-        alignItems : 'center',
-        borderRadius : 50,
-        backgroundColor : 'lightgray',
-        marginBottom : 20,
     },
     followStats : {
-        marginLeft : 20,
+        flexDirection : 'row',
+        justifyContent : 'space-between',
+        width : 130,
     },
     premiumNavigation : {
         flexDirection : 'row',
+        justifyContent : 'space-between',
         margin : 20,
+        borderRadius : 20,
+        backgroundColor : '#BF3EFF',
+        width : '95%',
+        height : 40,
+        padding : 10,
+        alignItems : 'center',
+        paddingLeft : 20,
     },
     favoriteSongs:{
         marginLeft : 20,
         paddingLeft : 10,
         paddingTop : 5,
-        backgroundColor : 'lightgray',
+        backgroundColor : '#FF69B4',
         height : 80,
         width : '95%',
         borderRadius : 20,
@@ -298,7 +317,7 @@ const styles = StyleSheet.create({
     favoritePlaylist : {
         marginTop : 20,
         marginLeft : 20,
-        backgroundColor : 'lightgray',
+        backgroundColor : '#00F5FF',
         width : '95%',
         borderRadius : 20,
     },
@@ -323,11 +342,22 @@ const styles = StyleSheet.create({
     favoriteAlbum : {
         marginTop : 20,
         marginLeft : 20,
-        backgroundColor : 'lightgray',
+        backgroundColor : '#EEDD82',
         width : '95%',
         borderRadius : 20,
     },
     albumContainer: { marginBottom: 20, paddingHorizontal: 20, flexDirection: 'row' },
+    signOutButton :{
+        margin : 20,
+        flexDirection : 'row',
+        justifyContent : 'space-between',
+        backgroundColor : 'lightgray',
+        width : '95%',
+        height : 50,
+        alignItems : 'center',
+        padding : 20,
+        borderRadius : 20,
+    }
 });
 
 export default UserAccount;
