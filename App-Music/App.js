@@ -33,7 +33,7 @@ export default function App() {
                     <Stack.Screen name="YourPlaylists" component={YourPlaylists} options={{ headerShown: false }} />
                     <Stack.Screen name="PremiumScreen" component={PremiumScreen} options={{headerShown: false}} />
                     <Stack.Screen name="PremiumChoiceScreen" component={PremiumChoiceScreen} options={{headerShown: false}}/>
-                    <Stack.Screen name="UserAccount" component={UserAccount} />
+                    <Stack.Screen name="UserAccount" component={UserAccount} options={{headerShown : false}} />
                 </Stack.Navigator>
             </NavigationContainer>
         </MusicProvider>
