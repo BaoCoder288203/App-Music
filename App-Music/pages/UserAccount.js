@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { View, Text, Image, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Image, FlatList, TouchableOpacity, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
 import { FontAwesome, MaterialIcons, AntDesign, FontAwesome6} from '@expo/vector-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faShuffle } from '@fortawesome/free-solid-svg-icons';
@@ -7,13 +7,12 @@ import { songs } from './MusicProvider';
 import { useMusic } from './MusicProvider';
 import Playing from './Playing';
 import { Footer } from '../layout/Footer';
-import { SafeAreaView, ScrollView } from 'react-native-web';
 
 const dataUser = {
     userId: "1",
     name: "John Doe",
     email: "johndoe@example.com",
-    avatarUrl: "../all_images/Feed - Audio Listing/Avatar 4.png",
+    avatarUrl: require('../all_images/Feed - Audio Listing/Avatar 4.png'),
     playlists: [
       {
         title: "Chill Beats",
@@ -137,9 +136,9 @@ const UserAccount = ({navigation}) => {
                     <TouchableOpacity onPress={()=> navigation.navigate('Home')}>
                         <FontAwesome name="angle-left" size={45} color="gray" style={{ right : 10,}} />
                     </TouchableOpacity>
-                        <Text style = {{fontSize : 20, marginLeft : 10,fontWeight : 'bold'}}>UserAccount</Text>
+                    <Text style = {{fontSize : 20,fontWeight : 'bold', width : 200,}}>UserAccount</Text>
                     </View>
-                    <View style = {{flexDirection: 'row', justifyContent : 'space-between', width : 100, marginRight : 45,}}>
+                    <View style = {{flexDirection: 'row', justifyContent : 'space-between', width : 100,}}>
                         <TouchableOpacity>
                             <FontAwesome name="gear" size={24} color="black" />
                         </TouchableOpacity>
@@ -184,8 +183,8 @@ const UserAccount = ({navigation}) => {
                             <FontAwesome name="heart" size={24} color="white" />
                         </View>
                         <View style = {{margin : 5}}>
-                            <Text style = {{fontSize : 15, marginLeft : 10, fontWeight : 'bold', color : 'white'}}>Favorite</Text>
-                            <Text style = {{fontSize : 15, marginLeft : 10, color : 'white'}}>{dataUser.likedSongs.length} songs</Text>
+                            <Text style = {{fontSize : 15, marginLeft : 10, fontWeight : 'bold'}}>Favorite</Text>
+                            <Text style = {{fontSize : 15, marginLeft : 10,}}>{dataUser.likedSongs.length} songs</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -250,7 +249,7 @@ const UserAccount = ({navigation}) => {
                     />
                 </View>
                 <TouchableOpacity style = {styles.signOutButton}>
-                    <Text>Sign out</Text>
+                    <Text style={{ fontSize : 18}}>Sign out</Text>
                     <FontAwesome name="sign-out" size={24} color="red" />
                 </TouchableOpacity>
                   
@@ -265,21 +264,27 @@ const styles = StyleSheet.create({
     container:{
         flex : 1,
         marginTop : 30,
-        marginLeft : 20, 
+        marginRight : 5,
     },
     userHeader:{
         flexDirection : 'row',
         justifyContent : 'space-between',
         marginHorizontal : 20,
+        alignItems : 'center',
+        
     },
     userInfo: {
-        margin : 20,
+        margin : 15,
         borderRadius : 20,
-        backgroundColor : '#FFC1C1',
+        backgroundColor : 'white',
         padding : 20,
         width : '95%',
         flexDirection : 'row',
-        
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 1,
     }, 
     userIcon : {
         justifyContent : 'center',
@@ -292,34 +297,51 @@ const styles = StyleSheet.create({
     premiumNavigation : {
         flexDirection : 'row',
         justifyContent : 'space-between',
-        margin : 20,
+        marginLeft : 15,
         borderRadius : 20,
         backgroundColor : '#BF3EFF',
         width : '95%',
         height : 40,
         padding : 10,
         alignItems : 'center',
-        paddingLeft : 20,
+        paddingLeft : 10,
+        marginVertical : 10,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 1,
     },
     favoriteSongs:{
-        marginLeft : 20,
+        marginLeft : 15,
         paddingLeft : 10,
         paddingTop : 5,
-        backgroundColor : '#FF69B4',
+        backgroundColor : 'white',
         height : 80,
         width : '95%',
         borderRadius : 20,
+        marginVertical: 10,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 1,
     },
     favoriteSongsButton : {
         flexDirection : 'row',
         margin : 10,
     },
     favoritePlaylist : {
-        marginTop : 20,
-        marginLeft : 20,
-        backgroundColor : '#00F5FF',
+        marginVertical: 10,
+        marginLeft : 15,
+        backgroundColor : 'white',
         width : '95%',
         borderRadius : 20,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 1,
     },
     playlistContainer: {
         marginBottom: 20,
@@ -340,22 +362,27 @@ const styles = StyleSheet.create({
         color: 'gray',
       },
     favoriteAlbum : {
-        marginTop : 20,
-        marginLeft : 20,
-        backgroundColor : '#EEDD82',
+        marginVertical: 10,
+        backgroundColor : 'white',
         width : '95%',
         borderRadius : 20,
+        marginLeft : 15,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 1,
     },
     albumContainer: { marginBottom: 20, paddingHorizontal: 20, flexDirection: 'row' },
     signOutButton :{
-        margin : 20,
+        margin : 15,
         flexDirection : 'row',
         justifyContent : 'space-between',
         backgroundColor : 'lightgray',
         width : '95%',
-        height : 50,
+        height : 60,
         alignItems : 'center',
-        padding : 20,
+        padding : 15,
         borderRadius : 20,
     }
 });
