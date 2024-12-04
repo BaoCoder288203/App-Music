@@ -10,7 +10,7 @@ export const Footer = () => {
             <FontAwesome name="home" size={20} style={styles.footerIcon} onPress={()=>navigation.navigate('Home')}/>
             <Text style={styles.footerText}>Home</Text>
         </TouchableOpacity>
-    
+     
         <TouchableOpacity style={styles.footerButton}>
             <FontAwesome name="search" size={20} style={styles.footerIcon} onPress={()=>navigation.navigate('Search')}/>
             <Text style={styles.footerText}>Search</Text>

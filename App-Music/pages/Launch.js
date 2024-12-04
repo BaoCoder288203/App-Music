@@ -1,13 +1,15 @@
 import React from 'react';
 import { View, Text, StyleSheet, SafeAreaView, Image, TouchableOpacity } from 'react-native';
 
-export default function Login({ navigation }) {
+export default function Launch({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={{ height: '100%' }}>
         <Image style={styles.imgBack} source={require('../all_images/Launch Screen/Image 30.png')} />
         <View style={styles.screenLanch}>
-          <View style={{ flex: 1 }}>
+          <View style={{ 
+            flex: 1,
+           }}>
             <Image style={styles.imgLogo} source={require('../all_images/Launch Screen/Image 33.png')} />
           </View>
           <View style={{
@@ -16,7 +18,10 @@ export default function Login({ navigation }) {
             justifyContent: 'space-between',
             alignItems: 'center'
           }}>
-            <View style={{  width: 180 }}>
+            <View style={{  
+            flex: 1,
+            width: 180  
+            }}>
               <Text style={{
                 fontSize: 35,
                 fontWeight: 'bold',
@@ -29,17 +34,17 @@ export default function Login({ navigation }) {
             <View style={styles.btns}>
               <TouchableOpacity
                 style={styles.btn1}
-                onPress={() => navigation.navigate('PremiumScreen')}>  
+                onPress={() => navigation.navigate('Home')}>  
                 <Text style={styles.textBtn1}> Start with Premium </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.btn2}
-                onPress={() => navigation.navigate('Home')}>  
+                onPress={() => navigation.navigate('Register')}>  
                 <Text style={styles.textBtn1}> Create an account </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.btn3}
-                onPress={() => navigation.navigate('Home')}>  
+                onPress={() => navigation.navigate('Login')}>  
                 <Text style={styles.textBtn2}> I already have an account </Text>
               </TouchableOpacity>
             </View>
@@ -71,12 +76,11 @@ const styles = StyleSheet.create({
     marginTop: 70,
   },
   btns: {
-    flex: 1,
+    flex: 2,
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '90%',
-    height: '100%',
-    gap:20,
+    gap:10,
   },
   textBtn1: {
     color: 'white',
@@ -91,25 +95,29 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   btn1: {
+    flex: 1,
     backgroundColor: '#1d1d1d',
     borderRadius: 50,
     width: '100%',
-    paddingTop: 15,
-    paddingBottom: 15,
     marginTop: 50,
+    justifyContent: 'center', 
+    alignItems: 'center', 
   },
   btn2: {
+    flex: 1,
     backgroundColor: '#1d1d1d',
     borderRadius: 50,
     width: '100%',
-    paddingTop: 15,
-    paddingBottom: 15,
+    justifyContent: 'center', 
+    alignItems: 'center', 
   },
   btn3: {
+    flex: 1,
     backgroundColor: 'white',
     borderRadius: 50,
     width: '100%',
-    paddingTop: 15,
-    paddingBottom: 15,
+    paddingHorizontal:15,
+    justifyContent: 'center', 
+    alignItems: 'center', 
   }
 });

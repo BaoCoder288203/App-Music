@@ -53,10 +53,6 @@ const   Feed = () => {
     setFlatLike(!flatLike);
   };
 
-  const toggleShare = (postId)=>{
-    
-  };
-
   const renderItem = ({ item }) => (
     <View style={styles.card}>
       <View style={styles.userInfo}>
