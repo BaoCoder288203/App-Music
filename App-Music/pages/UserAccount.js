@@ -77,6 +77,7 @@ const UserAccount = () => {
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView 
+                style={styles.container}
                 showsVerticalScrollIndicator={false} 
                 showsHorizontalScrollIndicator={false} 
                 contentContainerStyle={{ flexGrow: 1 }}
@@ -115,7 +116,7 @@ const UserAccount = () => {
                         </View>
                     </View>
                 </View>
-                
+
                 <TouchableOpacity style={styles.premiumNavigation} onPress={() => navigation.navigate('PremiumScreen')}>
                     <Text style={styles.premiumText}>Premium</Text>
                     <FontAwesome name="angle-right" size={24} color="white" />
@@ -374,4 +375,3 @@ const styles = StyleSheet.create({
 });
 
 export default UserAccount;
-

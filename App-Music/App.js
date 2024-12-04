@@ -39,7 +39,7 @@ export default function App() {
                 // Khởi tạo TrackPlayer nếu chưa được khởi tạo 
                 await TrackPlayer.setupPlayer();
                 console.log("TrackPlayer đã được khởi tạo.");
-                // Cập nhật các tùy chọn cho TrackPlayer khi đã setup thành công 
+                // Cập nhật các tùy chọn cho TrackPlayer khi đã setup thành công
                 await TrackPlayer.updateOptions({
                     capabilities: [
                       Capability.Play,
