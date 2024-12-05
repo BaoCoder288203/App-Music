@@ -1,26 +1,6 @@
 import { setSongCurrent, setIsPlaying, setDuration, setIsLoaded } from './songSlice';
 import TrackPlayer, { Capability, Event, State } from 'react-native-track-player';
 
-export const setupPlayer = async () => {
-  try {
-    await TrackPlayer.setupPlayer();
-    await TrackPlayer.updateOptions({
-      capabilities: [
-        Capability.Play,
-        Capability.Pause,
-        Capability.SkipToNext,
-        Capability.SkipToPrevious,
-        Capability.Stop,
-        Capability.SeekTo,
-      ],
-      compactCapabilities: [Capability.Play, Capability.Pause, Capability.SkipToNext, Capability.SkipToPrevious],
-    });
-    console.log('TrackPlayer setup complete');
-  } catch (error) {
-    console.error('Error setting up TrackPlayer:', error);
-    throw error;
-  }
-};
 
 const formatDuration = (seconds) => {
   const minutes = Math.floor(seconds / 60);
@@ -28,19 +8,13 @@ const formatDuration = (seconds) => {
   return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
 };
 
-const ensurePlayerReady = async () => {
-  const isReady = await TrackPlayer.isServiceRunning();
-  if (!isReady) {
-    await setupPlayer();
-  }
-};
+
 
 export const playSong = (song) => async (dispatch) => {
   try {
     if (!song || !song.id) {
       throw new Error('Invalid song object');
     }
-    await ensurePlayerReady();
     await TrackPlayer.reset();
 
     await TrackPlayer.add({
@@ -80,17 +54,21 @@ export const playSong = (song) => async (dispatch) => {
 
 export const playPauseSong = () => async (dispatch, getState) => {
   try {
-    await ensurePlayerReady();
-    const { isPlaying } = getState().song;
+    const { isPlaying } = getState().song; // Lấy trạng thái isPlaying từ Redux
+
     if (isPlaying) {
-      await TrackPlayer.pause();
+      await TrackPlayer.pause(); // Dừng bài hát
+      dispatch(setIsPlaying(false)); // Cập nhật Redux để báo rằng bài hát đã bị dừng
     } else {
-      await TrackPlayer.play();
+      await TrackPlayer.play(); // Phát bài hát
+      dispatch(setIsPlaying(true)); // Cập nhật Redux để báo rằng bài hát đang phát
     }
   } catch (error) {
     console.error('Error toggling play/pause:', error);
   }
 };
+
+
 
 export const playNextSong = () => async (dispatch, getState) => {
   try {

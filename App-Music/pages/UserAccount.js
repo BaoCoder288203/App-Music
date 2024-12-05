@@ -34,12 +34,12 @@ const UserAccount = () => {
 
     const handleLogout = async () => {
         try {
-            await dispatch(logoutUser()).unwrap();
-            await AsyncStorage.removeItem('userToken');
-            dispatch(resetUserState());
-            navigation.navigate('Login');
+          await AsyncStorage.removeItem('userToken'); 
+          await dispatch(logoutUser()).unwrap();
+          dispatch(resetUserState());
+          navigation.navigate('Login'); 
         } catch (error) {
-            console.error('Logout failed:', error);
+          console.error('Logout failed:', error);
         }
     };
 

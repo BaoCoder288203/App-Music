@@ -165,6 +165,28 @@ export const removeSongFromPlaylist = createAsyncThunk(
   }
 );
 
+export const addFavorite = createAsyncThunk(
+  'user/addFavorite',
+  async (item, { getState, dispatch }) => {
+    const { favorites } = getState().user;
+    if (!favorites.some(fav => fav.id === item.id)) {
+      const updatedFavorites = [...favorites, item];
+      await dispatch(saveDataToStorage({ userId: getState().user.userId, key: 'favorites', data: updatedFavorites }));
+      return updatedFavorites;
+    }
+  }
+);
+
+export const removeFavorite = createAsyncThunk(
+  'user/removeFavorite',
+  async (itemId, { getState, dispatch }) => {
+    const { favorites } = getState().user;
+    const updatedFavorites = favorites.filter(item => item.id !== itemId);
+    await dispatch(saveDataToStorage({ userId: getState().user.userId, key: 'favorites', data: updatedFavorites }));
+    return updatedFavorites;
+  }
+);
+
 // Slice
 const userSlice = createSlice({
   name: 'user',
@@ -270,6 +292,12 @@ const userSlice = createSlice({
       })
       .addCase(removeSongFromPlaylist.fulfilled, (state, action) => {
         state.playlists = action.payload;
+      })
+      .addCase(addFavorite.fulfilled, (state, action) => {
+        state.favorites = action.payload;
+      })
+      .addCase(removeFavorite.fulfilled, (state, action) => {
+        state.favorites = action.payload;
       });
   },
 });

@@ -24,6 +24,8 @@ import Playing from './pages/Playing';
 import { AlbumDetailsScreen } from './pages/pageDetails/AlbumDetailsScreen';
 import PlaylistDetail from './pages/PlaylistDetail';
 import TrackPlayer, { Capability } from 'react-native-track-player';
+import { setupPlayer } from 'react-native-track-player/lib/src/trackPlayer';
+import YourLibrary from './pages/YourLibrary';
 
 const Stack = createNativeStackNavigator();
 
@@ -33,46 +35,26 @@ export default function App() {
 
     useEffect(() => {
         const initializeApp = async () => {
-            console.log(TrackPlayer);
-            if (TrackPlayer) {
             try {
-                // Khởi tạo TrackPlayer nếu chưa được khởi tạo 
-                await TrackPlayer.setupPlayer();
-                console.log("TrackPlayer đã được khởi tạo.");
-                // Cập nhật các tùy chọn cho TrackPlayer khi đã setup thành công
-                await TrackPlayer.updateOptions({
-                    capabilities: [
-                      Capability.Play,
-                      Capability.Pause,
-                      Capability.SkipToNext,
-                      Capability.SkipToPrevious,
-                      Capability.Stop,
-                      Capability.SeekTo, 
-                    ],
-                  });
-                console.log("TrackPlayer đã được khởi tạo.");
+                // Khởi tạo TrackPlayer 
+                await setupPlayer();
                 setIsPlayerReady(true);
 
-                // Kiểm tra và lấy userId từ AsyncStorage
                 const userId = await AsyncStorage.getItem('userId');
                 if (userId) {
                     store.dispatch(setUserId(userId));
                     store.dispatch(loadUserData());
-                    setInitialRoute('Home');  // Điều hướng đến Home nếu có userId
+                    setInitialRoute('Home');
                 } else { 
-                    setInitialRoute('Launch');  // Nếu không có userId, điều hướng đến Launch
+                    setInitialRoute('Launch'); 
                 }
             } catch (error) {
                 console.error('Error initializing app:', error);
-                // Có thể xử lý lỗi ở đây, ví dụ: hiển thị thông báo lỗi cho người dùng
             }
-        } else {
-            console.error("TrackPlayer chưa được khởi tạo.");
-        }
         };
 
-        initializeApp();  // Gọi hàm khởi tạo ứng dụng
-    }, []);  // Chạy một lần khi ứng dụng bắt đầu
+        initializeApp();  
+    }, []);  
 
     return (
         <Provider store={store}>
@@ -93,6 +75,7 @@ export default function App() {
                     <Stack.Screen name="PlaylistDetail" component={PlaylistDetail} options={{ headerShown: false }} />
                     <Stack.Screen name="Feed" component={Feed} options={{ headerShown: false }} />
                     <Stack.Screen name="PremiumScreen" component={PremiumScreen} options={{ headerShown: false }} />
+                    <Stack.Screen name="YourLibrary" component={YourLibrary} options={{ headerShown: false }} />
                     <Stack.Screen name="PremiumChoiceScreen" component={PremiumChoiceScreen} options={{ headerShown: false }} />
                 </Stack.Navigator>
             </NavigationContainer>

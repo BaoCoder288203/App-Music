@@ -2,7 +2,6 @@ import { createSlice, createAsyncThunk, createSelector } from '@reduxjs/toolkit'
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// Khởi tạo trạng thái ban đầu
 const initialState = {
   songList: [], 
   songCurrent: null, 

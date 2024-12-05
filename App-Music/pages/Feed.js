@@ -132,7 +132,7 @@ const   Feed = () => {
   );
 
   return (
-    <View style={{flex:1}}>
+    <View style={{flex:1, paddingTop:30}}>
       <View style={{flexDirection:'row',justifyContent:'space-between',padding:10,backgroundColor:'white',fontSize:15}}>
         <Text style = {{fontSize : 20,fontWeight:'bold', color : 'gray'}}>Feed</Text>
         <TouchableOpacity style={{}}>
